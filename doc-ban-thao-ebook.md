@@ -4,7 +4,7 @@
 **Phụ đề:** Từ ý tưởng đến Web, App, Game & Animation  
 **Trạng thái:** Bản thảo nội dung cập nhật ngày 25/09/2026; chưa dàn trang hoặc xuất DOCX/PDF.
 
-Cuốn sách dành cho người mới hoàn toàn. Chương 1–10 theo case **Mira · Đêm Linh Quang**: từ ảnh nhân vật đến game Three.js có xương, Xưởng chuyển động và bản chơi desktop/mobile. Chương 11 chuyển sang dự án độc lập **Atlas Hành Tinh**, landing page 3D/motion không dùng ảnh game Mira. Bản HTML là **bản FREE**; các menu nâng cấp được khóa “Coming soon”. Hướng nâng cấp gồm Blender, animation, game nhiều màn, lưu game, PWA/offline, mobile, giáo dục và thương mại hóa. Các prompt là mẫu để điều chỉnh theo file và mục tiêu thật.
+Cuốn sách dành cho người mới hoàn toàn. Chương 1–10 theo case **Mira · Đêm Linh Quang**: từ ảnh nhân vật đến game Three.js có xương, Xưởng chuyển động và bản chơi desktop/mobile; cuối Chương 10 có video tổng kết. Chương 11 chuyển sang dự án độc lập **Atlas Hành Tinh**, landing page 3D/motion không dùng ảnh game Mira. Phụ lục B có thêm bài tập **Bông · Làng Vui Học 3D** với bốn ảnh tham chiếu, Tripo, rig và kiểm clip thật. Bản HTML là **bản FREE**; các menu nâng cấp được khóa “Coming soon”. Hướng nâng cấp gồm Blender, animation, game nhiều màn, lưu game, PWA/offline, mobile, giáo dục và thương mại hóa. Các prompt là mẫu để điều chỉnh theo file và mục tiêu thật.
 
 | Phần | Nội dung |
 |---|---|

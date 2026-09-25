@@ -42,6 +42,35 @@ def render_file(path):
         caption = soup.new_tag('figcaption'); caption.string = a.get_text(' ',strip=True)
         fig.append(caption)
         para.insert_after(fig)
+    # A standalone YouTube link becomes a responsive player with a plain-link fallback.
+    for a in list(soup.select('p > a[href]')):
+        href = a.get('href', '')
+        match = re.fullmatch(r'https?://(?:youtu\.be/|(?:www\.)?youtube\.com/watch\?v=)([A-Za-z0-9_-]{11})(?:[&?].*)?', href)
+        para = a.parent
+        if not match or para.name != 'p' or len(para.contents) != 1:
+            continue
+        label = a.get_text(' ', strip=True)
+        fig = soup.new_tag('figure')
+        fig['class'] = 'video-figure'
+        frame = soup.new_tag('div')
+        frame['class'] = 'video-frame'
+        player = soup.new_tag('iframe')
+        player['src'] = f'https://www.youtube-nocookie.com/embed/{match.group(1)}'
+        player['title'] = label
+        player['loading'] = 'lazy'
+        player['allow'] = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+        player['allowfullscreen'] = ''
+        frame.append(player)
+        fig.append(frame)
+        caption = soup.new_tag('figcaption')
+        caption.append(label + ' · ')
+        fallback = soup.new_tag('a', href=href)
+        fallback.string = 'Mở trên YouTube'
+        fallback['target'] = '_blank'
+        fallback['rel'] = 'noopener noreferrer'
+        caption.append(fallback)
+        fig.append(caption)
+        para.replace_with(fig)
     for img in soup.select('img'):
         img['loading'] = 'lazy'
         img['decoding'] = 'async'
@@ -93,7 +122,7 @@ TEMPLATE=r'''<!doctype html>
 @media(max-width:760px){.topbar{height:61px;padding:0 12px;gap:9px}.brand{font-size:12px;gap:7px}.brand-icon{width:32px;height:32px;font-size:12px}.top-title{display:none}.top-actions{margin-left:auto}.top-actions .ghost.print{display:none}.top-actions .ghost{font-size:12px;padding:8px 9px}.menu-btn{display:block}.layout{display:block}.sidebar{display:none}.sidebar.open{display:block;position:fixed;z-index:30;top:61px;left:0;bottom:0;width:min(330px,90vw);height:auto;box-shadow:8px 0 25px rgba(0,0,0,.12)}.reader-wrap{padding:15px 10px 44px}.paper{padding:23px 18px;box-shadow:none;max-width:100%;border-radius:4px}.chapter-kicker{font-size:10px;margin-bottom:17px}.prose{line-height:1.67}.prose h1{font-size:calc(var(--font-size)*1.75)}.prose h2{font-size:calc(var(--font-size)*1.25);margin-top:34px}.prose table{display:block;overflow-x:auto;white-space:normal}.prose th,.prose td{min-width:140px;padding:9px}.cover-inner{display:block;min-height:0}.cover h1{font-size:52px}.cover-sub{font-size:18px}.cover-photo{display:block;max-height:360px;margin:28px auto}.cover-notes{gap:15px}.mobile-panel{display:none;position:fixed;z-index:31;right:10px;top:69px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 35px rgba(0,0,0,.14);padding:19px;width:min(310px,calc(100vw - 20px))}.mobile-panel.open{display:block}.mobile-panel .setting{margin-bottom:17px}}
 @media print{.topbar,.sidebar,.settings,.chapter-end,.mobile-panel{display:none!important}.layout{display:block}.reader-wrap{padding:0}.paper{border:0;box-shadow:none;padding:0;max-width:none}.book-section{display:block!important;break-before:page}.cover{display:block!important;break-after:page}.prose{max-width:none;font-size:11pt}.prose figure{break-inside:avoid}.prose h2{break-after:avoid}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{scroll-behavior:auto!important;transition:none!important}}
-.prose figure img{cursor:zoom-in}.prose figure img:focus-visible{outline:3px solid var(--orange);outline-offset:4px}.image-dialog{border:0;border-radius:16px;padding:0;background:#fff;max-width:min(96vw,1560px);max-height:95dvh;box-shadow:0 30px 90px rgba(0,0,0,.34)}.image-dialog::backdrop{background:rgba(6,17,30,.82)}.image-dialog-inner{padding:16px;max-height:95dvh;display:flex;flex-direction:column}.image-dialog-top{display:flex;justify-content:flex-end;margin-bottom:8px}.image-dialog-close{border:0;background:#e8f1ef;border-radius:9px;padding:9px 14px;font-weight:800;color:#17384e}.image-dialog img{display:block;max-width:100%;max-height:calc(95dvh - 115px);object-fit:contain;margin:auto}.image-dialog p{font:14px/1.5 Arial,Helvetica,sans-serif;color:#4f616a;margin:11px 3px 2px}@media print{.image-dialog{display:none!important}}
+.prose img{cursor:zoom-in}.prose img:focus-visible{outline:3px solid var(--orange);outline-offset:4px}.prose table img{display:block;width:100%;min-width:130px;max-width:180px;aspect-ratio:2/3;object-fit:contain;margin:auto;background:#fff}.prose .video-figure{max-width:100%}.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#142039;border-radius:10px;overflow:hidden}.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.image-dialog{border:0;border-radius:16px;padding:0;background:#fff;max-width:min(96vw,1560px);max-height:95dvh;box-shadow:0 30px 90px rgba(0,0,0,.34)}.image-dialog::backdrop{background:rgba(6,17,30,.82)}.image-dialog-inner{padding:16px;max-height:95dvh;display:flex;flex-direction:column}.image-dialog-top{display:flex;justify-content:flex-end;margin-bottom:8px}.image-dialog-close{border:0;background:#e8f1ef;border-radius:9px;padding:9px 14px;font-weight:800;color:#17384e}.image-dialog img{display:block;max-width:100%;max-height:calc(95dvh - 115px);object-fit:contain;margin:auto}.image-dialog p{font:14px/1.5 Arial,Helvetica,sans-serif;color:#4f616a;margin:11px 3px 2px}@media print{.image-dialog{display:none!important}}
 .layout{grid-template-columns:282px minmax(0,1fr);max-width:1460px}#settingsBtn{display:none}.sidebar .premium-label{margin:28px 12px 10px;padding-top:18px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.12em;font-weight:800;color:#9a7d60}.toc-link.locked{cursor:not-allowed;opacity:.67}.toc-link.locked:hover{background:transparent}.toc-link.locked small{display:block;margin-top:4px;font-size:10px;letter-spacing:.08em;color:#af876a}.free-badge{display:inline-flex;align-items:center;border-radius:999px;background:#eaf2ef;color:#26746f;padding:4px 9px;font-size:10px;font-weight:800;letter-spacing:.08em}@media(max-width:1250px) and (min-width:761px){.layout{grid-template-columns:250px minmax(0,1fr)}}@media(max-width:760px){#settingsBtn{display:inline-flex}}
 </style>
 </head>
@@ -111,8 +140,8 @@ function applyPrefs(){prefs.font=Math.max(15,Math.min(24,Number(prefs.font)||18)
 function show(id,push=true){if(!ids.includes(id))id='cover';current=id;document.querySelectorAll('.book-section,.cover').forEach(el=>el.classList.toggle('active',el.id===id));document.querySelectorAll('.toc-link').forEach(el=>el.classList.toggle('active',el.dataset.target===id));const title=id==='cover'?'Trang bìa':document.getElementById(id).dataset.title;document.getElementById('topTitle').textContent=title;document.title=title+' · Làm chủ Vibe Code 3D';document.getElementById('sidebar').classList.remove('open');document.getElementById('mobilePanel').classList.remove('open');if(push)history.replaceState(null,'','#'+id);window.scrollTo({top:0,behavior:'instant'});progress()}
 function progress(){const selected=document.querySelector('.book-section.active');if(!selected){document.getElementById('progressFill').style.width='0%';return}const max=document.documentElement.scrollHeight-innerHeight;const within=max>0?scrollY/max:0;const idx=ids.indexOf(current);const pct=((idx-1+within)/(ids.length-1))*100;document.getElementById('progressFill').style.width=Math.max(0,Math.min(100,pct))+'%'}
 function zoomImage(img){const dialog=document.getElementById('imageDialog');const figure=img.closest('figure');document.getElementById('imageZoom').src=img.src;document.getElementById('imageZoom').alt=img.alt;document.getElementById('imageCaption').textContent=figure?.querySelector('figcaption')?.textContent||img.alt;dialog.showModal()}
-document.addEventListener('click',e=>{const img=e.target.closest('.prose figure img');if(img){zoomImage(img);return}const target=e.target.closest('[data-target]');if(target){show(target.dataset.target);return}if(e.target.closest('.next-chapter')){const i=ids.indexOf(current);show(ids[Math.min(ids.length-1,i+1)]);return}});
-document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.prose figure img')){e.preventDefault();zoomImage(e.target)}});
+document.addEventListener('click',e=>{const img=e.target.closest('.prose img');if(img){zoomImage(img);return}const target=e.target.closest('[data-target]');if(target){show(target.dataset.target);return}if(e.target.closest('.next-chapter')){const i=ids.indexOf(current);show(ids[Math.min(ids.length-1,i+1)]);return}});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.prose img')){e.preventDefault();zoomImage(e.target)}});
 document.getElementById('imageClose').addEventListener('click',()=>document.getElementById('imageDialog').close());document.getElementById('imageDialog').addEventListener('click',e=>{if(e.target.id==='imageDialog')e.target.close()});
 for(const [id,key] of [['mFontSize','font'],['mPageWidth','width'],['mImageSize','image']])document.getElementById(id).addEventListener('input',e=>{prefs[key]=Number(e.target.value);applyPrefs()});
 for(const id of ['mResetBtn'])document.getElementById(id).addEventListener('click',()=>{prefs={...defaults};applyPrefs()});

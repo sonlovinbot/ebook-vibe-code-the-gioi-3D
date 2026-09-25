@@ -21,7 +21,7 @@ Cuốn sách dùng **Mira · Đêm Linh Quang** làm case xuyên suốt từ Ch�
 | 10. Nâng cấp và chia sẻ | Biến một ý tưởng truyện thành tính năng nhỏ để thử thế nào? | Ảnh thắng, ảnh mobile và ba concept tính năng | Kế hoạch năm mốc; thử một nhánh; kiểm vòng chơi |
 | 11. Atlas Hành Tinh — landing page 3D/motion | Khi nào dùng video, khi nào dùng GLB và chuẩn bị từng cảnh thế nào? | SpaceEdu tham khảo; mockup, ba cảnh và quy trình riêng của Atlas | Hero một cảnh, mở rộng nhiều cảnh |
 | Phụ lục A | Thuật ngữ cần tra nhanh | Bảng chữ | Tra cứu |
-| Phụ lục B | Prompt mẫu dùng lại | Mẫu và checklist | Sao chép, thay dữ liệu của mình |
+| Phụ lục B | Prompt mẫu dùng lại và bài tập Bông · Làng Vui Học 3D | Bốn góc nhân vật, ảnh Tripo, mẫu câu lệnh | Sao chép prompt, kiểm GLB thật trước khi làm màn giáo dục |
 
 **Quy ước hình ảnh:** ảnh ChatGPT là concept 2D; ảnh Tripo là preview model có thể xoay; ảnh game là kết quả chơi thật. Ảnh concept Mira ở nhiều tư thế, bản đồ, bộ quái và các cảnh landing page **chưa phải** tính năng hay video đã hoàn thành. Mỗi caption bắt đầu bằng chữ hoa, nói rõ ảnh chứng minh được gì và không chứng minh được gì khi cần.
 

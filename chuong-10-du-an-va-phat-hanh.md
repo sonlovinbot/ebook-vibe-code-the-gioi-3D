@@ -72,6 +72,12 @@ Khi giới thiệu dự án, ghi rõ: **game hiện chạy được, Mira đã c
 
 > Hãy chạy bản game Mira hiện tại và kiểm vòng chơi từ màn mở đầu tới thắng hoặc thua. Ghi rõ phần đã thử trên desktop, phần đã thử ở bố cục mobile trong trình duyệt và phần chỉ có thể xác nhận bằng điện thoại thật. Chụp ảnh ba mốc: bắt đầu, chiến đấu, kết thúc. Báo lỗi chặn việc chơi và sửa đúng lỗi đó; chưa mở thêm tính năng mới.
 
+## 10.5. Xem bản game Mira đã hoàn thành
+
+Video dưới đây cho thấy kết quả của case Mira sau nhiều vòng sửa asset, chuyển động và luật chơi. Hãy xem để nhận ra **nhân vật, bối cảnh, quái, chiêu và mục tiêu** đã kết hợp thành một màn chơi như thế nào; video là bản trình diễn, không thay cho việc tự chơi thử trên thiết bị của bạn.
+
+[Video 10.1 — Game 3D Mira, bản trình diễn hoàn thành](https://youtu.be/zylONoqmndQ)
+
 ## Kết thúc case Mira
 
 - [ ] Tôi có bản game đang chơi được và biết mở trên localhost.

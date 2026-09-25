@@ -1,6 +1,6 @@
 # Làm chủ Vibe Code 3D — Bản FREE
 
-Ebook dành cho người mới: Chương 1–10 theo game Mira; Chương 11 là dự án landing page Atlas Hành Tinh độc lập.
+Ebook dành cho người mới: Chương 1–10 theo game Mira; Chương 11 là dự án landing page Atlas Hành Tinh độc lập. Cuối Chương 10 có video Mira; Phụ lục B có bài tập Bông cho ý tưởng game giáo dục Làng Vui Học 3D.
 
 [Đọc ebook trên GitHub Pages](https://sonlovinbot.github.io/ebook-vibe-code-the-gioi-3D/)
 
