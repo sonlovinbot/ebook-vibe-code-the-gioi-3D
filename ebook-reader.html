@@ -1,0 +1,1366 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Làm chủ Vibe Code 3D · Bản đọc thử</title>
+<style>
+:root{--navy:#1b3a6b;--ink:#263544;--muted:#66747a;--teal:#3c8b87;--orange:#e87722;--line:#dce2e0;--paper:#fffdf9;--bg:#f1f3f0;--font-size:18px;--measure:780px;--image-scale:100%;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}a{color:var(--navy);text-underline-offset:3px}.app{min-height:100dvh}
+.topbar{height:70px;position:sticky;top:0;z-index:20;background:rgba(255,253,249,.96);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 28px;box-shadow:0 2px 16px rgba(28,47,56,.035)}.brand{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:15px;font-weight:800;letter-spacing:.06em;color:var(--navy)}.brand-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:var(--navy);color:#fff;font-size:15px;letter-spacing:0}.top-title{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}.top-actions{display:flex;align-items:center;gap:8px}.ghost{border:1px solid var(--line);background:#fff;border-radius:10px;color:var(--ink);padding:9px 12px;font-size:13px;font-weight:700}.ghost:hover,.toc-link:hover{background:#eef5f2}.menu-btn{display:none}.progress-track{height:3px;background:#e9eeeb;position:absolute;inset:auto 0 0}.progress-fill{height:100%;background:var(--teal);width:0;transition:width .16s}
+.layout{display:grid;grid-template-columns:282px minmax(0,1fr) 244px;max-width:1800px;margin:auto}.sidebar{align-self:start;position:sticky;top:70px;height:calc(100dvh - 70px);overflow:auto;background:#f9faf8;border-right:1px solid var(--line);padding:28px 15px}.sidebar-label,.panel-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#81918e;font-weight:800;margin:5px 12px 20px}.toc-link{display:flex;align-items:flex-start;gap:12px;width:100%;border:0;background:transparent;border-radius:10px;text-align:left;padding:10px 11px;color:#46535c;font-size:13px;line-height:1.36}.toc-link.active{background:#e9f2ee;color:var(--navy);font-weight:700}.toc-num{flex:none;font-family:Arial,sans-serif;color:var(--teal);font-weight:800;font-size:12px;padding-top:1px}.sidebar-bottom{border-top:1px solid var(--line);margin:24px 10px 0;padding-top:18px;color:#85918c;font-size:12px;line-height:1.5}.reader-wrap{min-width:0;padding:44px clamp(20px,5vw,74px) 88px}.paper{background:var(--paper);border:1px solid #e5e7e1;border-radius:6px;box-shadow:0 18px 55px rgba(36,48,48,.045);margin:0 auto;max-width:calc(var(--measure) + 104px);min-height:70vh;padding:clamp(28px,5vw,52px)}.book-section{display:none}.book-section.active{display:block}.chapter-kicker{color:var(--teal);font-size:12px;font-weight:800;letter-spacing:.16em;margin:3px 0 24px}.chapter-kicker span{padding:0 7px;color:#b7c3be}.prose{font-size:var(--font-size);line-height:1.72;max-width:var(--measure);margin:auto;overflow-wrap:anywhere}.prose h1{font-size:clamp(32px,calc(var(--font-size)*2.25),48px);line-height:1.13;color:var(--navy);letter-spacing:-.04em;margin:0 0 28px}.prose h2{font-size:calc(var(--font-size)*1.38);line-height:1.22;color:var(--navy);letter-spacing:-.02em;margin:46px 0 15px;padding-top:10px}.prose h3{font-size:calc(var(--font-size)*1.13);color:var(--navy);margin:32px 0 10px}.prose p{margin:0 0 18px}.prose strong{color:#203b4e}.prose ul,.prose ol{padding-left:1.25em;margin:10px 0 24px}.prose li{padding-left:.15em;margin:7px 0}.prose li::marker{color:var(--teal)}.prose blockquote{border-left:4px solid var(--teal);background:#f0f6f3;padding:17px 22px;margin:26px 0;color:#355a5a;border-radius:0 8px 8px 0}.prose blockquote p:last-child{margin-bottom:0}.prose pre{white-space:pre-wrap;overflow-x:auto;padding:18px 20px;background:#f0f3f2;border:1px solid #e3e9e6;border-radius:9px;font-size:calc(var(--font-size)*.75);line-height:1.55;margin:24px 0}.prose code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#edf1ef;padding:.1em .3em;border-radius:4px;font-size:.88em}.prose pre code{background:none;padding:0}.prose table{border-collapse:collapse;width:100%;font-size:calc(var(--font-size)*.82);line-height:1.5;margin:25px 0 31px}.prose th{text-align:left;background:#eaf2ef;color:#214b54}.prose th,.prose td{border:1px solid #d8e1dd;padding:11px 12px;vertical-align:top}.prose tr:nth-child(even) td{background:#fafbf8}.prose figure{margin:34px auto;max-width:var(--image-scale)}.prose figure img{display:block;width:100%;max-height:630px;object-fit:contain;border:1px solid #e2e8e4;background:#f7f8f6;border-radius:9px}.prose figcaption{font-size:calc(var(--font-size)*.75);line-height:1.45;color:var(--muted);margin-top:10px}.prose .linked-figure{max-width:min(var(--image-scale),540px)}.prose .linked-figure img{max-height:620px}.prose hr{border:0;border-top:1px solid var(--line);margin:38px 0}.chapter-end{border-top:1px solid var(--line);margin-top:52px;padding-top:22px;display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:13px;color:#85918c}.next-chapter,.start-btn{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:12px 17px;font-size:14px;font-weight:700}.next-chapter:hover,.start-btn:hover{background:#31588b}
+.settings{align-self:start;position:sticky;top:70px;height:calc(100dvh - 70px);padding:30px 22px;border-left:1px solid var(--line);color:var(--muted)}.setting{margin:0 0 26px}.setting-head{display:flex;justify-content:space-between;gap:5px;color:var(--ink);font-size:13px;font-weight:700;margin-bottom:11px}.setting output{color:var(--teal);font-variant-numeric:tabular-nums}.setting input[type=range]{width:100%;accent-color:var(--teal)}.hint{font-size:12px;line-height:1.55;color:#86928e;margin:25px 0}.reset-btn{width:100%;border:1px solid var(--line);background:#fff;border-radius:9px;padding:10px 13px;font-size:12px;font-weight:700;color:var(--navy)}.reset-btn:hover{background:#f3f7f4}.settings-sep{border-top:1px solid var(--line);margin:27px 0}.stat{font-size:12px;line-height:1.6;color:#71817d}.stat strong{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.cover{display:none}.cover.active{display:block}.cover-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,310px);gap:35px;align-items:center;min-height:520px}.cover-tag{color:var(--teal);font-size:13px;font-weight:800;letter-spacing:.17em}.cover h1{font-size:clamp(48px,6vw,86px);letter-spacing:-.075em;line-height:.98;color:var(--navy);margin:22px 0 24px}.cover h1 span{display:block;color:var(--teal)}.cover-sub{font-size:21px;line-height:1.4;color:#405664;max-width:480px}.cover-author{font-size:14px;color:#66747a;margin:30px 0}.cover-photo{max-width:100%;max-height:515px;object-fit:contain;filter:drop-shadow(0 16px 18px rgba(21,32,48,.14))}.cover-notes{display:flex;gap:24px;border-top:1px solid var(--line);padding-top:21px;margin-top:16px;color:#6e807e;font-size:12px}.cover-notes strong{display:block;font-size:20px;color:var(--navy);margin-bottom:4px}
+.mobile-toc{display:none}.mobile-toc.open{display:block}.mobile-controls{display:none}.mobile-panel{display:none}
+@media(max-width:1250px){.layout{grid-template-columns:250px minmax(0,1fr)}.settings{display:none}.mobile-controls{display:flex;gap:8px}.topbar{padding:0 18px}.reader-wrap{padding:30px 26px 60px}}
+@media(max-width:760px){.topbar{height:61px;padding:0 12px;gap:9px}.brand{font-size:12px;gap:7px}.brand-icon{width:32px;height:32px;font-size:12px}.top-title{display:none}.top-actions{margin-left:auto}.top-actions .ghost.print{display:none}.top-actions .ghost{font-size:12px;padding:8px 9px}.menu-btn{display:block}.layout{display:block}.sidebar{display:none}.sidebar.open{display:block;position:fixed;z-index:30;top:61px;left:0;bottom:0;width:min(330px,90vw);height:auto;box-shadow:8px 0 25px rgba(0,0,0,.12)}.reader-wrap{padding:15px 10px 44px}.paper{padding:23px 18px;box-shadow:none;max-width:100%;border-radius:4px}.chapter-kicker{font-size:10px;margin-bottom:17px}.prose{line-height:1.67}.prose h1{font-size:calc(var(--font-size)*1.75)}.prose h2{font-size:calc(var(--font-size)*1.25);margin-top:34px}.prose table{display:block;overflow-x:auto;white-space:normal}.prose th,.prose td{min-width:140px;padding:9px}.cover-inner{display:block;min-height:0}.cover h1{font-size:52px}.cover-sub{font-size:18px}.cover-photo{display:block;max-height:360px;margin:28px auto}.cover-notes{gap:15px}.mobile-panel{display:none;position:fixed;z-index:31;right:10px;top:69px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 35px rgba(0,0,0,.14);padding:19px;width:min(310px,calc(100vw - 20px))}.mobile-panel.open{display:block}.mobile-panel .setting{margin-bottom:17px}}
+@media print{.topbar,.sidebar,.settings,.chapter-end,.mobile-panel{display:none!important}.layout{display:block}.reader-wrap{padding:0}.paper{border:0;box-shadow:none;padding:0;max-width:none}.book-section{display:block!important;break-before:page}.cover{display:block!important;break-after:page}.prose{max-width:none;font-size:11pt}.prose figure{break-inside:avoid}.prose h2{break-after:avoid}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{scroll-behavior:auto!important;transition:none!important}}
+.prose figure img{cursor:zoom-in}.prose figure img:focus-visible{outline:3px solid var(--orange);outline-offset:4px}.image-dialog{border:0;border-radius:16px;padding:0;background:#fff;max-width:min(96vw,1560px);max-height:95dvh;box-shadow:0 30px 90px rgba(0,0,0,.34)}.image-dialog::backdrop{background:rgba(6,17,30,.82)}.image-dialog-inner{padding:16px;max-height:95dvh;display:flex;flex-direction:column}.image-dialog-top{display:flex;justify-content:flex-end;margin-bottom:8px}.image-dialog-close{border:0;background:#e8f1ef;border-radius:9px;padding:9px 14px;font-weight:800;color:#17384e}.image-dialog img{display:block;max-width:100%;max-height:calc(95dvh - 115px);object-fit:contain;margin:auto}.image-dialog p{font:14px/1.5 Arial,Helvetica,sans-serif;color:#4f616a;margin:11px 3px 2px}@media print{.image-dialog{display:none!important}}
+.layout{grid-template-columns:282px minmax(0,1fr);max-width:1460px}#settingsBtn{display:none}.sidebar .premium-label{margin:28px 12px 10px;padding-top:18px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.12em;font-weight:800;color:#9a7d60}.toc-link.locked{cursor:not-allowed;opacity:.67}.toc-link.locked:hover{background:transparent}.toc-link.locked small{display:block;margin-top:4px;font-size:10px;letter-spacing:.08em;color:#af876a}.free-badge{display:inline-flex;align-items:center;border-radius:999px;background:#eaf2ef;color:#26746f;padding:4px 9px;font-size:10px;font-weight:800;letter-spacing:.08em}@media(max-width:1250px) and (min-width:761px){.layout{grid-template-columns:250px minmax(0,1fr)}}@media(max-width:760px){#settingsBtn{display:inline-flex}}
+</style>
+</head>
+<body><div class="app">
+<header class="topbar"><button id="menuBtn" class="ghost menu-btn" type="button" aria-label="Mở mục lục">☰</button><div class="brand"><span class="brand-icon">3D</span><span>COACHIO · EBOOK</span></div><div class="top-title" id="topTitle">Bản đọc thử</div><div class="top-actions"><button class="ghost" id="coverBtn" type="button">Bìa</button><button class="ghost" id="settingsBtn" type="button" aria-label="Điều chỉnh kích thước">Aa</button><button class="ghost print" id="printBtn" type="button">In / PDF</button></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><div class="sidebar-label">BẢN FREE · 11 CHƯƠNG</div><button class="toc-link" type="button" data-target="cover"><span class="toc-num">◎</span><span>Trang bìa</span></button><button class="toc-link" type="button" data-target="chap-01"><span class="toc-num">01</span><span>Tư duy Vibe Code 3D: bạn định hướng, AI thực hiện</span></button>
+<button class="toc-link" type="button" data-target="chap-02"><span class="toc-num">02</span><span>Đọc một game 3D bằng ngôn ngữ dễ hiểu</span></button>
+<button class="toc-link" type="button" data-target="chap-03"><span class="toc-num">03</span><span>Từ một prompt đến kế hoạch phát triển game Mira</span></button>
+<button class="toc-link" type="button" data-target="chap-04"><span class="toc-num">04</span><span>Xem game bằng mắt, thử game bằng tay</span></button>
+<button class="toc-link" type="button" data-target="chap-05"><span class="toc-num">05</span><span>Sửa một lỗi của Mira mà không làm lại cả game</span></button>
+<button class="toc-link" type="button" data-target="chap-06"><span class="toc-num">06</span><span>Chuẩn bị nhân vật và quái cho bản Mira tiếp theo</span></button>
+<button class="toc-link" type="button" data-target="chap-07"><span class="toc-num">07</span><span>Từ Retopo đến chuyển động của Mira</span></button>
+<button class="toc-link" type="button" data-target="chap-08"><span class="toc-num">08</span><span>Mở rộng repo Mira thay vì làm game mới</span></button>
+<button class="toc-link" type="button" data-target="chap-09"><span class="toc-num">09</span><span>Dùng công cụ đúng lúc trong dự án Mira</span></button>
+<button class="toc-link" type="button" data-target="chap-10"><span class="toc-num">10</span><span>Kế hoạch nâng cấp và chia sẻ game Mira</span></button>
+<button class="toc-link" type="button" data-target="chap-11"><span class="toc-num">11</span><span>Dự án mới: landing page khám phá hành tinh</span></button>
+<button class="toc-link" type="button" data-target="appendix-1"><span class="toc-num">P1</span><span>Từ điển đủ dùng cho Vibe Code 3D</span></button>
+<button class="toc-link" type="button" data-target="appendix-2"><span class="toc-num">P2</span><span>Bộ mẫu thực hành nhanh</span></button><div class="premium-label">BẢN NÂNG CẤP <span class="free-badge">SẮP RA MẮT</span></div><button class="toc-link locked" type="button" disabled aria-label="Blender · Hoàn thiện asset 3D — Sắp ra mắt"><span class="toc-num">🔒</span><span>Blender · Hoàn thiện asset 3D<small>COMING SOON</small></span></button><button class="toc-link locked" type="button" disabled aria-label="Animation · Chuyển động tự nhiên — Sắp ra mắt"><span class="toc-num">🔒</span><span>Animation · Chuyển động tự nhiên<small>COMING SOON</small></span></button><button class="toc-link locked" type="button" disabled aria-label="Game nhiều màn · AI quái — Sắp ra mắt"><span class="toc-num">🔒</span><span>Game nhiều màn · AI quái<small>COMING SOON</small></span></button><button class="toc-link locked" type="button" disabled aria-label="Database · Đăng nhập · Lưu game — Sắp ra mắt"><span class="toc-num">🔒</span><span>Database · Đăng nhập · Lưu game<small>COMING SOON</small></span></button><button class="toc-link locked" type="button" disabled aria-label="PWA · Chơi offline — Sắp ra mắt"><span class="toc-num">🔒</span><span>PWA · Chơi offline<small>COMING SOON</small></span></button><button class="toc-link locked" type="button" disabled aria-label="Mobile launch · Đưa game lên điện thoại — Sắp ra mắt"><span class="toc-num">🔒</span><span>Mobile launch · Đưa game lên điện thoại<small>COMING SOON</small></span></button><button class="toc-link locked" type="button" disabled aria-label="Game giáo dục · Gamification — Sắp ra mắt"><span class="toc-num">🔒</span><span>Game giáo dục · Gamification<small>COMING SOON</small></span></button><button class="toc-link locked" type="button" disabled aria-label="Thương mại hóa · Analytics — Sắp ra mắt"><span class="toc-num">🔒</span><span>Thương mại hóa · Analytics<small>COMING SOON</small></span></button><button class="toc-link locked" type="button" disabled aria-label="Landing page GLB tương tác — Sắp ra mắt"><span class="toc-num">🔒</span><span>Landing page GLB tương tác<small>COMING SOON</small></span></button><div class="sidebar-bottom">Bản thảo nội dung · 25.09.2026<br>Đặng Hữu Sơn và Nhóm cộng sự Coachio Academy</div></aside>
+<main class="reader-wrap"><div class="paper"><section class="cover" id="cover"><div class="cover-inner"><div><div class="cover-tag">CẨM NANG THỰC HÀNH CÙNG AI · BẢN FREE</div><h1>LÀM CHỦ <span>VIBE CODE 3D</span></h1><p class="cover-sub">Từ ý tưởng đến Web, App, Game & Animation</p><p class="cover-author">Đặng Hữu Sơn và Nhóm cộng sự Coachio Academy</p><button class="start-btn" type="button" data-target="chap-01">Bắt đầu đọc <span aria-hidden="true">→</span></button></div><img class="cover-photo" src="ebook-assets/book-cover-reference.png" alt="Ảnh bìa tham khảo của ebook Vibe Code 3D"></div><div class="cover-notes"><div><strong>11</strong>chương thực hành</div><div><strong>02</strong>phụ lục dùng ngay</div><div><strong>AI + 3D</strong>cho người mới</div></div></section><section class="book-section" id="chap-01" data-title="Chương 1 — Tư duy Vibe Code 3D: bạn định hướng, AI thực hiện"><div class="chapter-kicker">CHƯƠNG 01 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 1 — Tư duy Vibe Code 3D: bạn định hướng, AI thực hiện</h1>
+<p>Bạn có thể mô tả một trang web bằng vài câu và nhờ AI viết mã. Với 3D, cách bắt đầu cũng như vậy, nhưng phần cần kiểm tra nhiều hơn: hình có đúng không, nhìn từ góc khác có còn đúng không, mô hình có quá nặng không, và nó có thực sự chuyển động được không? Chương này giúp bạn hiểu vai trò của mình trước khi cài công cụ hay học thuật ngữ.</p>
+<p><strong>Sau chương này, bạn có thể:</strong> chọn một ý tưởng 3D vừa sức; giao một nhiệm vụ rõ ràng cho AI; nhìn kết quả để quyết định bước tiếp theo; phân biệt ảnh nhân vật, mô hình 3D và nhân vật có hoạt ảnh.</p>
+<h2>1.1. Vibe coding là gì?</h2>
+<p>Vibe coding là cách làm sản phẩm bằng ngôn ngữ tự nhiên: bạn nói mục tiêu và yêu cầu, một agent lập trình tạo file, chạy thử và sửa lỗi cùng bạn. <em>Agent</em> là trợ lý có thể làm việc với dự án, không chỉ trả lời trong ô chat. Bạn không cần tự gõ từng dòng mã để làm bản đầu tiên, nhưng vẫn là người quyết định sản phẩm cần làm gì và khi nào đã đạt.</p>
+<p>Hãy nghĩ đến việc làm một căn phòng trưng bày. Bạn có thể nhờ một đội thi công dựng phòng, đặt đèn và treo sản phẩm. Nếu bạn chỉ nói “làm thật đẹp”, mỗi người có thể hình dung một kiểu. Nếu bạn đưa ảnh mẫu, kích thước, nơi đặt sản phẩm và cách khách đi xem, đội thi công sẽ có cơ sở để làm đúng hơn. Agent lập trình cũng cần những chỉ dẫn như vậy.</p>
+<p>Với một dự án 3D, câu “Tạo một game thật đẹp” chưa cho AI biết nhân vật là ai, người chơi làm gì, game chạy ở đâu và thế nào là xong. Một yêu cầu dễ thực hiện hơn là:</p>
+<blockquote>
+<p>Tạo một cảnh 3D nhỏ chạy trên trình duyệt. Nhân vật đứng trên một hòn đảo, người chơi dùng phím hoặc nút trên điện thoại để đi đến một viên pha lê. Chạm vào pha lê thì hiện “Đã tìm thấy”. Trước tiên chỉ làm một màn chơi; cho tôi xem bản chạy được rồi mới thêm hiệu ứng.</p>
+</blockquote>
+<p>Yêu cầu thứ hai có <strong>đối tượng, hành động, môi trường và điểm dừng</strong>. Nhờ đó, bạn có thể kiểm tra kết quả thay vì chỉ cảm thấy “có vẻ chưa đúng”.</p>
+<blockquote>
+<p><strong>Điểm cần nhớ:</strong> AI tạo bản đầu tiên rất nhanh. “Đã hiện trên màn hình” chưa đồng nghĩa “đã hoàn thiện”. Bạn cần xem, thử và mô tả điều cần sửa.</p>
+</blockquote>
+<h2>1.2. Thế giới 3D khác một trang web thông thường ở đâu?</h2>
+<p>Một trang thông tin thường có chữ, ảnh, nút và các khối nội dung. Cảnh 3D còn có chiều sâu. Vật thể có mặt trước, sau, trái, phải; ánh sáng và góc nhìn có thể làm cùng một vật trông rất khác.</p>
+<p>Hãy hình dung một sân khấu:</p>
+<pre><code class="language-text">SÂN KHẤU 3D (scene)
+├─ Đạo cụ, nhân vật       → mô hình (model)
+├─ Hình dạng đạo cụ       → hình học (geometry/mesh)
+├─ Màu và bề mặt          → vật liệu, ảnh bề mặt (material/texture)
+├─ Đèn                   → ánh sáng (light)
+└─ Máy quay               → camera
+
+Trình duyệt vẽ cảnh → bạn nhìn và thử → nói điều cần sửa → AI chỉnh lại
+</code></pre>
+<p>Bạn chưa cần học hết tên gọi ở đây. Chỉ cần nhớ: khi một nhân vật nhìn “sai”, nguyên nhân có thể nằm ở <strong>mô hình</strong>, <strong>ảnh bề mặt</strong>, <strong>ánh sáng</strong> hoặc <strong>camera</strong>. Ví dụ, giày trông méo có thể do phần hình của giày thật sự sai; đổi camera đẹp hơn không sửa được lỗi đó. Chương 2 sẽ giải thích từng thuật ngữ bằng hình và ví dụ.</p>
+<h2>1.3. Bắt đầu từ ứng dụng nào?</h2>
+<p>3D có ích khi người xem cần <strong>quan sát nhiều góc</strong> hoặc <strong>tương tác</strong> với đối tượng. Bạn không cần bắt đầu bằng một game lớn.</p>
+<table>
+<thead>
+<tr>
+<th>Ứng dụng</th>
+<th>Người xem làm gì?</th>
+<th>Bản đầu tiên vừa sức</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Landing page sản phẩm 3D</td>
+<td>Xoay để xem hình dạng, màu hoặc chi tiết</td>
+<td>Một mô hình, một thao tác xoay, phần mô tả dễ đọc</td>
+</tr>
+<tr>
+<td>Mô hình trực quan trên website</td>
+<td>Khám phá không gian, chọn một vị trí để xem thông tin</td>
+<td>Một cảnh, vài điểm bấm có chú thích</td>
+</tr>
+<tr>
+<td>Game 3D đơn giản</td>
+<td>Di chuyển, tìm hoặc nhặt một vật</td>
+<td>Một nhân vật, một màn chơi, một mục tiêu</td>
+</tr>
+</tbody>
+</table>
+<p>Nếu người xem chỉ cần thấy một khoảnh khắc đẹp, <strong>ảnh hoặc video có thể đã đủ</strong>. Chọn 3D khi việc xoay, đi lại hoặc chạm vào mô hình giúp họ hiểu thêm điều mà ảnh tĩnh không thể hiện được.</p>
+<p>Ví dụ xuyên suốt mười chương đầu là <strong>game Mira</strong>: từ ảnh nhân vật, mô hình Tripo, bản game đã chơi được tới việc gắn xương và tạo chuyển động. Chương 11 mở một dự án độc lập để áp dụng cùng cách làm cho landing page 3D.</p>
+<h2>1.4. PROMPT là chưa đủ: bạn cần biết mình đang duyệt điều gì</h2>
+<p>Một prompt hay không bù được ảnh đầu vào sai hoặc một mô hình thiếu bộ phận. Bạn cũng không cần trở thành lập trình viên hay họa sĩ 3D. Điều cần làm là <strong>đặt tiêu chí quan sát được</strong>.</p>
+<p>Trong một dự án nhỏ, phần việc có thể chia như sau:</p>
+<table>
+<thead>
+<tr>
+<th>Bạn quyết định</th>
+<th>AI hỗ trợ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ai sẽ dùng sản phẩm và họ làm việc gì</td>
+<td>Đề xuất cấu trúc và tạo bản đầu tiên</td>
+</tr>
+<tr>
+<td>Ảnh, phong cách và chi tiết nào phải giữ</td>
+<td>Tạo ảnh tham chiếu hoặc đưa mô hình vào cảnh</td>
+</tr>
+<tr>
+<td>Kết quả nào đạt, chi tiết nào sai</td>
+<td>Tìm nguyên nhân và sửa phần được chỉ rõ</td>
+</tr>
+<tr>
+<td>Khi nào nên dừng để kiểm tra</td>
+<td>Chạy thử, chụp kết quả, báo điều đã làm</td>
+</tr>
+</tbody>
+</table>
+<p>Quy trình ngắn nhất là:</p>
+<figure><img alt="Vòng lặp giao việc, xem bản thử, kiểm tra và sửa một việc" aria-label="Phóng to hình: Vòng lặp giao việc, xem bản thử, kiểm tra và sửa một việc" decoding="async" loading="lazy" role="button" src="ebook-assets/diagrams/ch01-vong-lap.png" tabindex="0"/><figcaption>Hình 1.1 — Một vòng làm việc nên tạo ra thứ có thể xem, rồi chỉ sửa phần chưa đạt. Giữ nguyên những phần đã đúng giúp bạn tránh làm lại không cần thiết.</figcaption></figure>
+
+<pre><code class="language-text">Nêu một việc rõ ràng
+       ↓
+AI tạo một kết quả có thể xem
+       ↓
+Bạn so với mục tiêu và ảnh tham chiếu
+       ↓
+Chỉ sửa một nhóm vấn đề
+       ↺ Lặp lại đến khi đạt
+</code></pre>
+<p>Ví dụ, nếu mặt nhân vật đúng nhưng giày sai, hãy nói “giữ mặt, tóc và áo; chỉ kiểm tra hình dáng hai chiếc giày” thay vì “làm lại nhân vật cho đẹp”. Câu thứ hai có thể khiến những phần đang đúng cũng thay đổi.</p>
+<h2>1.5. Năm bước tạo một nhân vật anime cho game 3D</h2>
+<p>Chúng ta dùng <strong>Mira</strong>, một nhân vật thám hiểm tai thỏ theo phong cách anime dễ thương. Trang phục gồm áo khoác rộng, khăn quàng, quần dài và giày bốt. Bản game đầu tiên đã được tạo từ một lệnh lớn. Ở phần thực hành, ta tách từng đầu vào để thấy chúng làm kết quả thay đổi ra sao và biết cách phát triển game tiếp.</p>
+<figure><img alt="Ảnh 2D, mô hình GLB và trải nghiệm web là ba kết quả khác nhau" aria-label="Phóng to hình: Ảnh 2D, mô hình GLB và trải nghiệm web là ba kết quả khác nhau" decoding="async" loading="lazy" role="button" src="ebook-assets/diagrams/ch01-ba-dau-ra.png" tabindex="0"/><figcaption>Hình 1.2 — Cùng một nhân vật nhưng có ba dạng kết quả. Mỗi dạng cần một công cụ và một cách kiểm tra khác nhau.</figcaption></figure>
+
+<p><strong>Bước 1 — Chốt thiết kế từ mặt trước bằng ChatGPT.</strong></p>
+<p><strong>Mục tiêu:</strong> tạo một ảnh nhân vật dễ nhận diện và có trang phục rõ ràng.<br/>
+<strong>Prompt có thể dùng ngay:</strong></p>
+<blockquote>
+<p>Thiết kế một nữ thám hiểm phong cách anime/chibi cho game hành động nhẹ nhàng. Nhân vật có tóc nâu ngắn, mắt xanh, tai thỏ cách điệu, áo khoác xanh ngọc rộng, khăn màu san hô, quần dài, găng tay và giày bốt. Trang phục kín đáo, không gợi cảm. Vẽ toàn thân nhìn chính diện, đứng cân bằng, hai tay tách nhẹ khỏi thân, nền trắng. Giữ các chi tiết đủ đơn giản để có thể dựng thành mô hình 3D.</p>
+</blockquote>
+<figure><img alt="Ảnh 2D chính diện của Mira" aria-label="Phóng to hình: Ảnh 2D chính diện của Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-anime/front.png" tabindex="0"/><figcaption>Hình 1.3 — Ảnh 2D chính diện của Mira do ChatGPT tạo. Duyệt tai, mặt, áo khoác và hai chiếc bốt trước khi yêu cầu góc nhìn khác.</figcaption></figure>
+
+<p>Đây là <strong>ảnh 2D</strong>, chưa phải mô hình 3D.<br/>
+<strong>Cách kiểm tra:</strong> nhìn rõ cả hai giày, hai tay, tai thỏ, màu áo và túi đeo; không có phần nào bị cắt khỏi khung. Nếu ảnh thiếu chân hoặc bàn tay, sửa ảnh trước khi đi tiếp.</p>
+<p><strong>Bước 2 — Tạo mặt sau của cùng nhân vật.</strong></p>
+<p><strong>Mục tiêu:</strong> để công cụ 3D không phải tự đoán toàn bộ phía sau.<br/>
+<strong>Prompt có thể dùng ngay:</strong></p>
+<blockquote>
+<p>Dựa trên ảnh chính diện tôi gửi, hãy tạo <strong>mặt sau của đúng nhân vật này</strong>. Giữ chiều cao, tỷ lệ đầu và tai, tóc, áo khoác, túi, quần và giày nhất quán. Không thêm phụ kiện mới. Toàn thân, tư thế trung tính, nền trắng.</p>
+</blockquote>
+<figure><img alt="Ảnh 2D mặt sau của Mira" aria-label="Phóng to hình: Ảnh 2D mặt sau của Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-anime/back.png" tabindex="0"/><figcaption>Hình 1.4 — Ảnh 2D mặt sau dùng để kiểm mũ áo, túi, tóc và bốt có nhất quán với ảnh chính diện hay không.</figcaption></figure>
+
+<p><strong>Cách kiểm tra:</strong> đặt hai ảnh cạnh nhau; đối chiếu chiều dài áo, màu khăn, vị trí dây túi và kiểu giày. AI có thể vẽ thêm một chi tiết hợp lý nhưng không có trong ảnh gốc; “trông hợp lý” vẫn chưa chắc là “cùng nhân vật”.</p>
+<p><strong>Bước 3 — Hoàn thiện góc trái và phải.</strong></p>
+<p><strong>Mục tiêu:</strong> có một bộ ảnh nhiều góc để dựng 3D.<br/>
+<strong>Prompt có thể dùng ngay:</strong></p>
+<blockquote>
+<p>Từ ảnh trước và sau đã duyệt, tạo thêm góc trái và góc phải của cùng nhân vật. Giữ tai, tóc, túi đeo, viền áo, chiều dài quần và giày nhất quán. Mỗi ảnh chỉ có một nhân vật toàn thân, đứng thẳng, nền trắng.</p>
+</blockquote>
+<figure><img alt="Ảnh 2D góc trái của Mira" aria-label="Phóng to hình: Ảnh 2D góc trái của Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-anime/left.png" tabindex="0"/><figcaption>Hình 1.5 — Góc trái của Mira: đối chiếu viền áo, túi và hình dáng bốt với ảnh chính diện.</figcaption></figure>
+
+<figure><img alt="Ảnh 2D góc phải của Mira" aria-label="Phóng to hình: Ảnh 2D góc phải của Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-anime/right.png" tabindex="0"/><figcaption>Hình 1.6 — Góc phải của cùng nhân vật. Hai ảnh bên không nên tự xuất hiện phụ kiện hoặc kiểu giày mới.</figcaption></figure>
+
+<p><strong>Cách kiểm tra:</strong> nhìn dải màu của áo, túi đeo và giày qua cả bốn ảnh. Nếu ảnh trái có kiểu bốt khác ảnh phải, hãy sửa bộ ảnh trước khi tạo 3D. Bốn ảnh không nhất quán có thể khiến công cụ dựng ra các chi tiết lạ.</p>
+<p><strong>Bước 4 — Dựng và duyệt mô hình trong Tripo.</strong></p>
+<p><strong>Mục tiêu:</strong> chuyển bốn ảnh đã chọn thành một mô hình 3D có thể dùng trên web. Trong bản được tác giả chọn cho game, ảnh được nạp vào <strong>Tripo Studio, chế độ Multi-view to 3D với HD Model H3.1</strong>. Mô hình trong ảnh chụp có topology Triangle. Đây là một lần dựng khác với bản thử P1 trước đó; không gộp hai kết quả thành một.</p>
+<figure><img alt="Mira 3D nhìn từ phía trước trong Tripo Studio" aria-label="Phóng to hình: Mira 3D nhìn từ phía trước trong Tripo Studio" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-preview-front.png" tabindex="0"/><figcaption>Hình 1.7 — Preview 3D của Mira trong Tripo Studio, nhìn từ phía trước. Mặt, tai, áo khoác và bốt đã có hình khối; đây là mô hình có thể xoay xem, không còn là ảnh 2D.</figcaption></figure>
+
+<figure><img alt="Mira 3D nhìn từ phía sau trong Tripo Studio" aria-label="Phóng to hình: Mira 3D nhìn từ phía sau trong Tripo Studio" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-preview-back.png" tabindex="0"/><figcaption>Hình 1.8 — Cùng mô hình Mira nhìn từ phía sau. Xoay sang góc này giúp kiểm tra tóc, mũ áo, dây túi và hai chiếc bốt mà ảnh chính diện không thể chứng minh.</figcaption></figure>
+
+<p><strong>Kết quả thực tế ở bản đầu:</strong> mô hình giữ được các đặc điểm nhận diện chính. GLB đầu tiên đưa vào game có texture nhưng chưa có rig hoặc clip hoạt ảnh. Sau vòng thử này, tác giả đã làm Retopo và gắn xương cho Mira; Chương 7 theo sát bước nâng cấp đó. Giày đã rõ hơn bản thử cũ, vẫn cần xem cận cảnh hai bên trước khi coi asset là bản cuối.</p>
+<p><strong>Cách kiểm tra:</strong> xoay mô hình để nhìn cả trước, sau và hai bên; phóng to mặt, tay và giày; xem các bộ phận có bị dính hoặc méo không. Nếu một chi tiết sai, ghi lại đúng chi tiết đó. Đừng vội dùng mô hình trong game chỉ vì preview mặt trước trông đẹp.</p>
+<blockquote>
+<p><strong>Lưu ý về GLB:</strong> File Mira hiện có hình và ảnh bề mặt, nhưng <strong>không có bộ xương điều khiển (rig) hay hoạt ảnh chạy/nhảy</strong>. GLB là một gói mô hình; nội dung bên trong mỗi file có thể khác nhau. Có file GLB không có nghĩa nhân vật đã chạy được.</p>
+</blockquote>
+<p><strong>Bước 5 — Đưa nhân vật vào một game web nhỏ.</strong></p>
+<p>Tác giả đã dùng một prompt rộng hơn với Claude Opus 5.5 để tạo <strong>Mira · Đêm Linh Quang</strong>, một game Three.js đã chơi được trên desktop và mobile. Prompt khởi đầu là:</p>
+<blockquote>
+<p>Tôi có file GLB của nhân vật Mira và muốn đưa vào một màn chơi 3D nhỏ trên web. Trước tiên hãy kiểm tra file có những phần nào, có rig hoặc hoạt ảnh không. Sau đó đặt nhân vật vào một cảnh game đồ họa đẹp, sử dụng Three.js và các công cụ cần thiết. Cho người chơi di chuyển bằng bàn phím hoặc nút chạm và nhặt một vật phát sáng. Có thể thêm vài loại yêu quái xuất hiện theo mức độ tăng dần và các chiêu thức để nhân vật chiến đấu. Tạo thư mục dự án; sau khi xong, mở localhost để tôi chơi thử.</p>
+</blockquote>
+<figure><img alt="Mira trong màn chơi 3D trên desktop" aria-label="Phóng to hình: Mira trong màn chơi 3D trên desktop" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-03-pickup.png" tabindex="0"/><figcaption>Hình 1.9 — Game thực tế trên desktop: Mira đứng trên đảo bay, đến tế đàn để nhặt Linh Tinh. Ảnh chụp này chứng minh bản chơi đầu đã có cảnh, nhân vật và mục tiêu tương tác.</figcaption></figure>
+
+<figure><img alt="Mira trong màn chơi 3D trên điện thoại" aria-label="Phóng to hình: Mira trong màn chơi 3D trên điện thoại" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/m-02-explore.png" tabindex="0"/><figcaption>Hình 1.10 — Cùng game trên màn hình điện thoại dọc. Cần điều khiển ảo và nút chiêu thức được bố trí cho thao tác chạm; ảnh chụp trình duyệt chưa thay thế việc thử trên điện thoại thật.</figcaption></figure>
+
+<p><strong>Điểm cần phân biệt:</strong> Prompt này tạo ra <strong>phiên bản game đầu tiên</strong> có nhiều hệ thống nhưng chân tay Mira chưa cử động theo khớp. GLB đời đầu không có xương; mã khi ấy chỉ nhún, nghiêng hoặc xoay cả nhân vật. Repo được phát triển tiếp đã có Mira 65 xương và chuyển động dựng bằng mã; Chương 7 giải thích vì sao GIF preview trên Tripo chưa tự biến thành clip trong GLB xuất ra.</p>
+<p><strong>Cách tự kiểm:</strong> nhân vật hiện đủ người, không chìm xuống nền; phím/nút di chuyển hoạt động; chạm vật thì có phản hồi. Chương 7 hướng dẫn nâng cấp chuyển động, Chương 10 hướng dẫn kiểm lại toàn bộ vòng chơi.</p>
+<h3>Bài học rút ra từ năm bước</h3>
+<p>Ở bước 1–3, ChatGPT giúp chuẩn bị <strong>ảnh đầu vào</strong>. Bước 4, Tripo tạo <strong>mô hình 3D</strong>. Bước 5, agent lập trình dùng <strong>mô hình đó trong một trải nghiệm web</strong>. Mỗi công cụ giải quyết một việc khác nhau. Khi giày của bản 3D chưa đạt, người làm dự án phải nhận ra và quyết định sửa đầu vào, chỉnh asset hay chấp nhận giới hạn ở bản thử. Đó là tư duy quan trọng hơn một prompt dài.</p>
+<h2>Bài tập 10 phút: chọn dự án đầu tiên</h2>
+<p>Hãy chọn <strong>một</strong> trong ba hướng: mô hình sản phẩm xoay được, một góc tham quan có điểm bấm, hoặc game nhặt một vật. Viết một câu mô tả kết quả và ba dấu hiệu để biết bản đầu tiên đã đạt.</p>
+<p>Bạn có thể đưa prompt này cho ChatGPT/Codex hoặc Claude:</p>
+<blockquote>
+<p>Tôi là người mới và muốn làm một bản mẫu 3D chạy trên trình duyệt trong một ngày. Ý tưởng của tôi là: [viết một câu]. Hãy giúp tôi thu hẹp thành phiên bản nhỏ nhất có thể xem và thử. Đề xuất tối đa ba tiêu chí “đạt”, những ảnh hoặc mô hình cần chuẩn bị, và thứ tự ba việc đầu tiên. Giải thích bằng ngôn ngữ dễ hiểu; chưa viết mã cho đến khi tôi chọn phương án.</p>
+</blockquote>
+<p><strong>Tự kiểm tra:</strong> Sau khi AI trả lời, bạn có hình dung được mình sẽ nhìn thấy gì trên màn hình ở lần chạy đầu tiên không? Nếu chưa, hãy yêu cầu mô tả lại bằng một cảnh và một thao tác cụ thể.</p>
+<h2>Trước khi sang chương 2</h2>
+<ul>
+<li>[ ] Tôi phân biệt được ảnh 2D, mô hình GLB và nhân vật có hoạt ảnh.</li>
+<li>[ ] Tôi chọn được một ứng dụng 3D nhỏ thay vì một dự án quá rộng.</li>
+<li>[ ] Tôi biết kiểm tra kết quả thật và nêu một chi tiết sai cụ thể.</li>
+<li>[ ] Tôi có một câu mô tả dự án cùng ba tiêu chí “đạt”.</li>
+</ul>
+<p>Chương 2 sẽ giải thích những từ vừa xuất hiện — scene, camera, model, GLB, rig, Three.js — và cách chuẩn bị môi trường tối thiểu để bắt đầu.</p>
+</div><div class="chapter-end"><span>Hết chương 1</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-02" data-title="Chương 2 — Đọc một game 3D bằng ngôn ngữ dễ hiểu"><div class="chapter-kicker">CHƯƠNG 02 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 2 — Đọc một game 3D bằng ngôn ngữ dễ hiểu</h1>
+<p>Chương 1 đã đưa Mira từ ảnh 2D sang mô hình rồi vào game. Bạn chỉ cần vài từ để nói chính xác phần nào cần sửa. Hãy nhìn game như một sân khấu có diễn viên, phông cảnh, máy quay và luật chơi.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> gọi tên sáu thành phần quan trọng và biết file nào cần đưa cho agent khi muốn nâng cấp Mira.</p>
+<figure><img alt="Một cảnh 3D gồm mô hình, ánh sáng và camera" aria-label="Phóng to hình: Một cảnh 3D gồm mô hình, ánh sáng và camera" decoding="async" loading="lazy" role="button" src="ebook-assets/diagrams/ch02-san-khau-3d.png" tabindex="0"/><figcaption>Hình 2.1 — Mira là một mô hình trong cảnh; camera quyết định góc nhìn, ánh sáng quyết định cách nhìn thấy bề mặt. Luật chơi và điều khiển là phần bổ sung để cảnh trở thành game.</figcaption></figure>
+
+<h2>2.1. Sáu từ thật sự cần cho case Mira</h2>
+<table>
+<thead>
+<tr>
+<th>Từ</th>
+<th>Hiểu bằng game Mira</th>
+<th>Câu hỏi khi sửa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GLB / asset</strong></td>
+<td>File nhân vật 3D được đưa vào game</td>
+<td>Có tải đúng bản Mira đã duyệt không?</td>
+</tr>
+<tr>
+<td><strong>Scene / world</strong></td>
+<td>Đảo bay, cỏ, cổng và tế đàn</td>
+<td>Mục tiêu có dễ nhìn không?</td>
+</tr>
+<tr>
+<td><strong>Camera</strong></td>
+<td>“Máy quay” theo Mira</td>
+<td>Có thấy nhân vật, quái và đường đi không?</td>
+</tr>
+<tr>
+<td><strong>Texture / material</strong></td>
+<td>Màu áo, bốt, độ bóng bề mặt</td>
+<td>Sai màu ở file hay do ánh sáng game?</td>
+</tr>
+<tr>
+<td><strong>Rig / clip</strong></td>
+<td>Xương và động tác đứng, chạy, đánh</td>
+<td>GLB có thật sự chứa chúng không?</td>
+</tr>
+<tr>
+<td><strong>Three.js</strong></td>
+<td>Công cụ vẽ cảnh và xử lý tương tác trên web</td>
+<td>Agent đã mở bản chơi trên localhost chưa?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Localhost</strong> là địa chỉ xem bản đang chạy trên máy làm việc, giống bản nháp chưa đưa lên mạng. <strong>Repo</strong> là thư mục dự án cùng lịch sử thay đổi. <strong>Token</strong> là đơn vị AI dùng khi đọc và trả lời; đưa cả lịch sử dài vào một lỗi nhỏ thường lãng phí hơn gửi ảnh lỗi và file liên quan.</p>
+<p>Ở <strong>phiên bản đầu</strong>, GLB Mira có hình và màu nhưng không có rig hoặc clip; Three.js chỉ đổi vị trí cả model. Ở <strong>repo mới nhất</strong>, Mira có 65 xương nên chân có thể bước và tay có thể ra chiêu. File Tripo xuất ra vẫn không mang theo clip hoạt ảnh, vì vậy game tạo các động tác trên bộ xương bằng mã. Hai mốc này giúp bạn thấy “đi được” và “chân bước thật” là hai việc khác nhau.</p>
+<h2>2.2. Công cụ nào đã làm việc gì?</h2>
+<figure><img alt="Luồng công cụ từ ảnh tham chiếu tới game web" aria-label="Phóng to hình: Luồng công cụ từ ảnh tham chiếu tới game web" decoding="async" loading="lazy" role="button" src="ebook-assets/diagrams/ch02-luong-cong-cu.png" tabindex="0"/><figcaption>Hình 2.2 — ChatGPT tạo ảnh nhiều góc, Tripo dựng GLB, agent lập trình ghép game bằng Three.js. Người làm dự án duyệt ở mỗi mốc.</figcaption></figure>
+
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Việc trong case này</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ChatGPT</strong></td>
+<td>Tạo bộ ảnh Mira trước/sau/trái/phải và ảnh concept phát triển</td>
+</tr>
+<tr>
+<td><strong>Tripo Studio</strong></td>
+<td>Tạo model 3D từ ảnh, xoay preview, xuất GLB; có thể thử Auto Rig ở bước sau</td>
+</tr>
+<tr>
+<td><strong>Claude hoặc Codex</strong></td>
+<td>Đọc file, tạo/sửa repo game, chạy localhost và kiểm kết quả</td>
+</tr>
+<tr>
+<td><strong>Three.js</strong></td>
+<td>Hiển thị Mira, bối cảnh, quái, ánh sáng và hiệu ứng trong trình duyệt</td>
+</tr>
+</tbody>
+</table>
+<p>Game Mira mà tác giả cung cấp được tạo sau khi ông điều chỉnh prompt và chạy trên Claude Opus 5.5. Đây là <strong>một quan sát của case</strong>, không phải phép thử chứng minh model nào luôn tốt hơn. Ảnh đầu vào, file GLB, yêu cầu và cách duyệt đều ảnh hưởng kết quả.</p>
+<h2>2.3. Bắt đầu từ bản đang chạy</h2>
+<p>Bạn không cần tạo một thư mục game mới để học chương này. Hãy mở repo Mira đã có, nhờ agent đọc README và khởi chạy bản hiện tại. Đừng đưa mật khẩu hoặc khóa API vào prompt.</p>
+<p><strong>Prompt thực hành:</strong></p>
+<blockquote>
+<p>Đây là thư mục game Mira đang chạy. Hãy đọc README và kiểm cấu trúc dự án, nhưng chưa sửa file. Chạy game trên localhost và cho tôi biết: file GLB nào đang dùng, phần nào tạo nhân vật, quái, chiêu thức và bối cảnh, cách mở bản desktop/mobile. Giải thích bằng lời đơn giản, mỗi phần một câu. Nếu không chạy được, báo đúng lỗi trước khi đề xuất sửa.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> mở trang, nhìn thấy Mira và tế đàn, dùng bàn phím hoặc nút chạm di chuyển. <strong>Nếu trang trắng:</strong> đưa thông báo lỗi cho agent; yêu cầu kiểm asset và đường dẫn trước khi đổi thiết kế.</p>
+<h2>2.4. Giữ một tờ ghi chú dự án</h2>
+<p>Nhờ agent tạo một file ngắn ghi: <strong>bản đang chạy</strong>, <strong>asset đang dùng</strong>, <strong>điều đã kiểm</strong>, <strong>một việc cần làm tiếp</strong>. Ví dụ: “Mira đã chơi được trên desktop/mobile; GLB chưa rig; việc tiếp theo là thử idle/run/attack; giữ nguyên game hiện tại.” Tờ ghi chú này giúp phiên làm việc sau không bắt đầu lại từ số không.</p>
+<p><strong>Prompt tiếp tục:</strong> “Hãy đọc ghi chú dự án và bản game hiện tại. Nêu một việc nhỏ nên làm tiếp, file nào có thể phải thay, và cách tôi kiểm kết quả. Chưa sửa cho đến khi đã xác nhận phạm vi.”</p>
+<h2>Trước khi sang chương 3</h2>
+<ul>
+<li>[ ] Tôi phân biệt được asset, bối cảnh, camera và chuyển động.</li>
+<li>[ ] Tôi biết GLB có hình nhưng chưa chắc có xương.</li>
+<li>[ ] Tôi mở được bản game hiện tại trước khi giao nâng cấp.</li>
+</ul>
+<p>Chương 3 sẽ dùng chính game Mira để chia một yêu cầu lớn thành các nhiệm vụ nhỏ.</p>
+</div><div class="chapter-end"><span>Hết chương 2</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-03" data-title="Chương 3 — Từ một prompt đến kế hoạch phát triển game Mira"><div class="chapter-kicker">CHƯƠNG 03 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 3 — Từ một prompt đến kế hoạch phát triển game Mira</h1>
+<p>Ở Chương 1, một prompt đã giúp tạo <strong>Mira · Đêm Linh Quang</strong>: nhân vật trên đảo bay, nhặt Linh Tinh, đánh các đợt quái. Game chạy được. Chương này chỉ ra cách tách kết quả thành những việc nhỏ để nâng cấp mà không phá bản đang chơi.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> kể lại vòng chơi bằng bốn cảnh, giải thích một thao tác được game xử lý thế nào, chọn một phần để cải tiến và giao việc cho ChatGPT/Codex hoặc Claude bằng câu lệnh có điểm dừng.</p>
+<figure><img alt="Màn chơi Mira sau khi nhặt Linh Tinh" aria-label="Phóng to hình: Màn chơi Mira sau khi nhặt Linh Tinh" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-03-pickup.png" tabindex="0"/><figcaption>Hình 3.1 — Bản chơi đã có nhân vật, mục tiêu nhặt vật, bối cảnh và giao diện. Bước tiếp theo là kiểm từng phần, không yêu cầu AI dựng lại toàn bộ.</figcaption></figure>
+
+<h2>3.1. Một prompt tạo ra game, nhưng game gồm nhiều phần</h2>
+<p>Hãy nhìn ảnh game và hỏi: “Nếu thay đúng một thứ, tôi muốn thay gì trước?” Sáu phần dễ nhận ra là <strong>nhân vật</strong>, <strong>chuyển động</strong>, <strong>quái</strong>, <strong>chiêu thức</strong>, <strong>bối cảnh</strong> và <strong>điều khiển</strong>. Mira hiện đi được nhưng hai chân chưa bước riêng; đó là nhiệm vụ về nhân vật và chuyển động, không phải nhiệm vụ làm lại cả đảo bay.</p>
+<table>
+<thead>
+<tr>
+<th>Phần đang có</th>
+<th>Bản hiện tại</th>
+<th>Một nâng cấp có thể kiểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mira</td>
+<td>Bản đầu có hình đẹp nhưng chưa có xương; bản mới đã gắn 65 xương</td>
+<td>Kiểm bước chân và chuyển động trong Xưởng của game; chỉ gọi là clip Tripo nếu file thật có clip</td>
+</tr>
+<tr>
+<td>Quái</td>
+<td>Hình khối dựng bằng Three.js</td>
+<td>Dễ nhận ra loại yếu, loại bay và trùm</td>
+</tr>
+<tr>
+<td>Chiêu thức</td>
+<td>Chém, bắn, vòng sáng, lướt, tuyệt kỹ</td>
+<td>Mỗi chiêu có hình ảnh và phản hồi riêng</td>
+</tr>
+<tr>
+<td>Bối cảnh</td>
+<td>Đảo bay, cổng, cỏ và tế đàn</td>
+<td>Đường đi rõ; Mira không bị cảnh che khuất</td>
+</tr>
+<tr>
+<td>Mobile</td>
+<td>Cần ảo và nút chạm</td>
+<td>Chơi được trên máy thật, nút không che nhân vật</td>
+</tr>
+</tbody>
+</table>
+<p>Trước khi thêm truyện mới, hãy xem <strong>một vòng chơi đã có</strong> qua năm ảnh thật. Người chơi nhìn hướng dẫn, nhặt Linh Tinh, đối mặt các đợt quái, đánh trùm và tới màn kết quả. Chuỗi này là khung xương để đặt thêm cốt truyện; thêm một cảnh mới phải giúp người chơi hiểu hoặc thực hiện một bước trong chuỗi.</p>
+<figure><img alt="Năm mốc của một vòng chơi Mira thực tế" aria-label="Phóng to hình: Năm mốc của một vòng chơi Mira thực tế" decoding="async" loading="lazy" role="button" src="ebook-assets/visual-boards/mira-game-journey.svg" tabindex="0"/><figcaption>Hình 3.2 — Năm ảnh chụp game đang chạy, từ màn mở đầu tới màn kết quả. Đây là vòng chơi hiện có; các tranh concept bên dưới là đề xuất phát triển tiếp.</figcaption></figure>
+
+<h2>3.2. Từ ảnh game thành câu chuyện bốn cảnh</h2>
+<p>Game đã có vòng chơi: tìm Linh Tinh, đối mặt các đợt quái và đánh trùm. Để phát triển bối cảnh truyện, trước tiên hãy kể lại <strong>điều người chơi tự nhìn thấy và làm được</strong>, rồi mới thêm chi tiết mới. Một hướng dễ hiểu là: Linh Tinh thức tỉnh tế đàn; bóng tối từ cổng tràn ra; Mira dùng ánh sáng mở đường; khi vượt qua trùm, cổng được thanh lọc. Đây là <strong>đề xuất kể chuyện cho phiên bản tiếp theo</strong>, không phải lời thoại hay nhiệm vụ đã có trong game.</p>
+<figure><img alt="Bốn cảnh truyện định hướng cho Mira" aria-label="Phóng to hình: Bốn cảnh truyện định hướng cho Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/mira-story-beats-v1.png" tabindex="0"/><figcaption>Hình 3.3 — Bốn khung concept: nhặt Linh Tinh → nhận ra quái → dùng phép phản công → tiến đến cổng trùm. Ảnh dùng để duyệt nhịp kể và bố cục; chúng không phải ảnh chụp game đang chạy.</figcaption></figure>
+
+<p>Mỗi cảnh chỉ cần trả lời hai câu: <strong>Mira muốn gì?</strong> và <strong>người chơi phải làm gì để tiến tiếp?</strong> Nếu một chi tiết truyện không thay đổi mục tiêu, đường đi hoặc cảm giác khi chơi, hãy để sau. Chẳng hạn, cổng phát sáng khi nhặt đủ Linh Tinh vừa kể được chuyện, vừa cho người chơi biết phải đi đâu.</p>
+<figure><img alt="Bản đồ concept cho một vòng chơi Mira" aria-label="Phóng to hình: Bản đồ concept cho một vòng chơi Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/mira-world-concept-v1.png" tabindex="0"/><figcaption>Hình 3.4 — Bản đồ concept một tuyến chơi: nơi bắt đầu, tế đàn, vùng quái nhỏ, cổng đá và đấu trường trùm. Đây là gợi ý bố trí không gian để duyệt, chưa phải bản đồ đã lập trình trong repo.</figcaption></figure>
+
+<p><strong>Bài tập 5 phút:</strong> dùng ngón tay đi theo đường từ Mira tới cổng trong Hình 3.4. Nếu phải đoán lối đi, hãy yêu cầu làm rõ đường hoặc tín hiệu ánh sáng trong ảnh định hướng <strong>trước</strong> khi giao agent dựng cảnh 3D.</p>
+<h2>3.3. Một thao tác trong game hoạt động thế nào?</h2>
+<p>Khi Mira chạm Linh Tinh, có ba lớp liên tiếp: người chơi <strong>di chuyển và chạm vật</strong>; game <strong>kiểm vật đã được nhặt và đợt quái cần bắt đầu</strong>; màn hình <strong>cho thấy ánh sáng, thông tin mới và quái xuất hiện</strong>. Người mới không cần đọc hết mã để hiểu mối liên hệ này.</p>
+<figure><img alt="Ba lớp phản hồi khi Mira nhặt Linh Tinh" aria-label="Phóng to hình: Ba lớp phản hồi khi Mira nhặt Linh Tinh" decoding="async" loading="lazy" role="button" src="ebook-assets/visual-boards/mira-game-system.svg" tabindex="0"/><figcaption>Hình 3.5 — Ảnh chụp game thật được đặt cạnh ba câu hỏi kiểm: người chơi làm gì, game kiểm điều gì và người chơi thấy gì. Khi sửa một lớp, hãy thử lại cả vòng tương tác.</figcaption></figure>
+
+<p><strong>Thử trực tiếp:</strong> mở game, tiến tới tế đàn và quan sát trước/sau khi nhặt. Ghi một câu về điều bạn bấm, một câu về điều màn hình thay đổi và một câu về điều bạn mong xảy ra tiếp. Ba câu ấy là nền cho prompt sửa tính năng.</p>
+<h2>3.4. Câu lệnh đầu tiên và câu lệnh tiếp theo khác nhau</h2>
+<p>Prompt đầu tiên cần mở được dự án và tạo vòng chơi. Prompt tiếp theo cần <strong>giữ phần đã đạt</strong> rồi sửa đúng một phần.</p>
+<blockquote>
+<p>Game Mira hiện đã chạy. Hãy đọc file GLB đang dùng và phần điều khiển nhân vật. Tôi muốn chân tay chuyển động thật khi Mira đứng, đi và chạy. Trước khi sửa, báo file có xương và clip hay không; nếu không có, đề xuất bước tạo asset phù hợp. Giữ nguyên ngoại hình, bối cảnh, quái và luật chơi. Chỉ sửa game sau khi đã có file hoạt ảnh kiểm được. Mở localhost và cho tôi xem Mira đứng, chạy, dừng theo cùng một góc camera.</p>
+</blockquote>
+<p><strong>Mục tiêu:</strong> thay hoạt ảnh nhân vật. <strong>Cách thử:</strong> đi thẳng, đổi hướng, dừng, nhìn cận hai chân và hai bốt. <strong>Nếu lỗi:</strong> quay về bản GLB và game trước khi sửa; ghi lỗi cụ thể như “chân xuyên nền”.</p>
+<h2>3.5. Mẫu giao việc bốn dòng</h2>
+<p>Bạn không phải viết một mega prompt cho mọi lần chỉnh. Hãy nói rõ <strong>hiện có gì</strong>, <strong>muốn thay gì</strong>, <strong>phải giữ gì</strong> và <strong>đạt khi nào</strong>.</p>
+<p>Ví dụ với quái: “Hiện có ba loại quái bằng hình khối. Muốn thay riêng Slime Bóng Tối bằng thiết kế mới; giữ tốc độ, máu và cách đuổi hiện tại. Đạt khi tôi nhận ra nó từ xa, đòn đánh vẫn báo trước và game còn chạy trên mobile.” Câu này cho agent đủ tự do để làm hình nhưng không được tự ý đổi luật chơi.</p>
+<h2>3.6. Chia phiên làm việc theo kết quả xem được</h2>
+<p>Một trình tự cho bản nâng cấp Mira là: <strong>kiểm GLB → duyệt dáng đứng/chạy → ghép hoạt ảnh → đổi một quái → nâng cấp một chiêu → thử desktop/mobile</strong>. Mỗi bước phải có ảnh hoặc bản chạy để duyệt. Nếu dáng chạy chưa ổn, đừng chuyển sang làm phép thuật.</p>
+<p><strong>Bài tập 10 phút:</strong> chọn đúng một hàng trong bảng mục 3.1. Viết bốn câu “Hiện có / Muốn thay / Phải giữ / Đạt khi”. Mở game, chụp trạng thái hiện tại và gửi ảnh đó cho agent. Đây là điểm gốc để so trước và sau.</p>
+<h2>Trước khi sang chương 4</h2>
+<ul>
+<li>[ ] Tôi gọi tên được các phần của game Mira bằng lời thường.</li>
+<li>[ ] Tôi phân biệt ảnh concept kể chuyện với ảnh game đang chạy.</li>
+<li>[ ] Tôi mô tả được thao tác, luật kiểm và phản hồi của việc nhặt Linh Tinh.</li>
+<li>[ ] Tôi chọn một nâng cấp, không giao lại cả game.</li>
+<li>[ ] Prompt có điều phải giữ và dấu hiệu “đạt” nhìn thấy được.</li>
+</ul>
+<p>Chương 4 dùng ảnh game thật để chỉ cách đánh giá kết quả bằng mắt và bằng thao tác.</p>
+</div><div class="chapter-end"><span>Hết chương 3</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-04" data-title="Chương 4 — Xem game bằng mắt, thử game bằng tay"><div class="chapter-kicker">CHƯƠNG 04 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 4 — Xem game bằng mắt, thử game bằng tay</h1>
+<p>Khi AI báo “đã hoàn thành”, đó là lúc bạn bắt đầu duyệt. Game Mira có thể trông đẹp trong một ảnh nhưng vẫn sai khi nhân vật chạy, quái đánh hoặc màn hình thu nhỏ.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> so asset với ảnh gốc, phân biệt ảnh đẹp với tính năng chạy thật, báo một lỗi đủ cụ thể để agent sửa.</p>
+<h2>4.1. Duyệt nhân vật ở hai nơi</h2>
+<p>Trước tiên, xem Mira trong Tripo Studio từ <strong>trước và sau</strong>. Ảnh chính diện cho thấy mắt, áo, dây túi và bốt. Ảnh phía sau cho thấy tóc, mũ áo và vị trí túi. Sau đó mới xem Mira trong game: dưới ánh sáng, camera và tỷ lệ mới, màu và hình có còn đúng không?</p>
+<figure><img alt="Mira 3D nhìn từ phía trước" aria-label="Phóng to hình: Mira 3D nhìn từ phía trước" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-preview-front.png" tabindex="0"/><figcaption>Hình 4.1 — Ở Tripo, hãy kiểm ngoại hình của chính asset: mặt, tai, tay và bốt. Đây là bước kiểm hình khối, chưa kiểm cách nhân vật di chuyển trong game.</figcaption></figure>
+
+<figure><img alt="Mira trong bản chơi trên máy tính" aria-label="Phóng to hình: Mira trong bản chơi trên máy tính" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-05-slash.png" tabindex="0"/><figcaption>Hình 4.2 — Trong game, cùng asset chịu thêm ánh sáng, góc camera, chuyển động và hiệu ứng chém. Ngoại hình đúng trong Tripo chưa bảo đảm đọc rõ giữa lúc chiến đấu.</figcaption></figure>
+
+<h2>4.2. Năm câu hỏi đủ dùng cho người mới</h2>
+<ol>
+<li><strong>Đúng người chưa?</strong> Tóc, tai, áo và túi có còn giống ảnh nhân vật đã duyệt?</li>
+<li><strong>Thấy rõ việc cần làm chưa?</strong> Người mới có nhận ra tế đàn, Linh Tinh và quái không?</li>
+<li><strong>Bấm có phản hồi chưa?</strong> Đi, nhặt vật, ra chiêu có dấu hiệu nhìn hoặc nghe thấy?</li>
+<li><strong>Có bất công không?</strong> Đòn của quái có báo trước để người chơi tránh?</li>
+<li><strong>Điện thoại có chơi được không?</strong> Nút chạm có đủ lớn, không che mục tiêu?</li>
+</ol>
+<figure><img alt="Mira đấu trùm với vòng cảnh báo đòn đánh" aria-label="Phóng to hình: Mira đấu trùm với vòng cảnh báo đòn đánh" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-12-slam.png" tabindex="0"/><figcaption>Hình 4.3 — Vòng đỏ trên đất là tín hiệu báo đòn của trùm. Khi duyệt, hãy thử xem người chơi có đủ thời gian và khoảng trống để tránh hay không.</figcaption></figure>
+
+<h2>4.3. Ảnh chụp là bằng chứng của một khoảnh khắc</h2>
+<p>Ảnh trùm chứng minh game <strong>có hình vòng cảnh báo</strong>. Nó chưa chứng minh vòng cảnh báo xuất hiện đúng lúc hoặc phím lướt tránh được đòn. Muốn kiểm, hãy chơi: đứng gần trùm, chờ vòng đỏ, lướt khỏi vòng, thử lại hai lần. Video ngắn hoặc thao tác trực tiếp đáng tin hơn ảnh tĩnh cho chuyển động.</p>
+<figure><img alt="Mira khám phá màn chơi trên bố cục điện thoại dọc" aria-label="Phóng to hình: Mira khám phá màn chơi trên bố cục điện thoại dọc" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/m-02-explore.png" tabindex="0"/><figcaption>Hình 4.4 — Bố cục điện thoại dọc: cần điều khiển ở trái, nút chiêu ở phải. Ảnh được chụp ở kích thước mobile trong trình duyệt; vẫn cần thử cảm giác chạm trên điện thoại thật.</figcaption></figure>
+
+<h2>4.4. Gửi nhận xét sửa được</h2>
+<p>Nhận xét “game chưa mượt” quá rộng. Ví dụ giả định, nếu bạn gặp tình huống: “Trên điện thoại dọc, tôi chạm nút lướt khi vòng đỏ xuất hiện, nhưng Mira vẫn bị trúng”, hãy yêu cầu kiểm thời điểm miễn sát thương và phản hồi hình ảnh, đồng thời giữ nguyên tốc độ quái. Câu này có thiết bị, thao tác, hiện tượng và giới hạn sửa.</p>
+<p><strong>Prompt dùng ngay:</strong></p>
+<blockquote>
+<p>Đây là ảnh hoặc video trạng thái game Mira. Hãy đối chiếu với mục tiêu tôi ghi bên dưới. Chỉ ra tối đa ba vấn đề có thể thấy hoặc tái hiện. Với mỗi vấn đề, nói cách thử để xác nhận trước khi sửa. Chưa thay mã cho đến khi đã phân biệt lỗi hình ảnh, lỗi điều khiển và lỗi luật chơi.</p>
+</blockquote>
+<p><strong>Bài tập:</strong> xem một ảnh desktop và một ảnh mobile. Viết một điều đã đạt, một điều chưa chắc, một phép thử cần làm. Đừng gọi “đạt” cho điều mà ảnh không chứng minh được.</p>
+<h2>Trước khi sang chương 5</h2>
+<ul>
+<li>[ ] Tôi kiểm asset ở Tripo và trong game ở hai bước riêng.</li>
+<li>[ ] Tôi thử thao tác, không chỉ nhìn ảnh.</li>
+<li>[ ] Tôi báo lỗi bằng thao tác và kết quả quan sát được.</li>
+</ul>
+<p>Chương 5 biến nhận xét đó thành yêu cầu sửa ngắn, tiết kiệm lượt làm và token.</p>
+</div><div class="chapter-end"><span>Hết chương 4</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-05" data-title="Chương 5 — Sửa một lỗi của Mira mà không làm lại cả game"><div class="chapter-kicker">CHƯƠNG 05 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 5 — Sửa một lỗi của Mira mà không làm lại cả game</h1>
+<p>Ở Chương 4, bạn đã biết mô tả điều nhìn thấy. Bây giờ dùng mô tả đó để sửa đúng nơi. Mỗi vòng sửa nên có <strong>một lỗi, một ảnh hoặc cách tái hiện, một kết quả cần thấy</strong>.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> phân biệt lỗi asset, lỗi hiển thị, lỗi điều khiển và lỗi luật chơi; gửi yêu cầu sửa ngắn mà vẫn đủ dữ kiện.</p>
+<figure><img alt="Mira dùng chiêu trong game" aria-label="Phóng to hình: Mira dùng chiêu trong game" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-07-nova.png" tabindex="0"/><figcaption>Hình 5.1 — Hiệu ứng sáng có thể che nhân vật. Khi báo lỗi, hãy nêu đúng cảnh, đúng chiêu và điều bị che thay vì yêu cầu “chỉnh lại đồ họa”.</figcaption></figure>
+
+<h2>5.1. Lỗi nằm ở đâu?</h2>
+<table>
+<thead>
+<tr>
+<th>Điều bạn thấy</th>
+<th>Nơi kiểm trước</th>
+<th>Việc nên giao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bốt méo ở Tripo và trong game</td>
+<td>Ảnh nhiều góc, GLB gốc</td>
+<td>Sửa ảnh hoặc asset; chưa sửa ánh sáng game</td>
+</tr>
+<tr>
+<td>Bốt đúng ở Tripo nhưng tối trong game</td>
+<td>Đèn, vật liệu, camera</td>
+<td>Chỉnh cảnh; giữ GLB</td>
+</tr>
+<tr>
+<td>Mira đi nhưng chân không bước</td>
+<td>Rig/clip trong GLB</td>
+<td>Tạo asset có xương và hoạt ảnh</td>
+</tr>
+<tr>
+<td>Chạm nút mà không ra chiêu</td>
+<td>Input, hồi chiêu, trạng thái game</td>
+<td>Tái hiện trên desktop/mobile rồi sửa</td>
+</tr>
+<tr>
+<td>Quái chết quá nhanh</td>
+<td>Luật sát thương/máu</td>
+<td>Chỉnh cân bằng, không đổi model</td>
+</tr>
+</tbody>
+</table>
+<p>Một lỗi giày là ví dụ hay: nếu hình khối giày sai ở Tripo, đừng dùng hàng chục prompt Three.js để “che” nó. Ngược lại, nếu chỉ ánh sáng game làm giày mất chi tiết thì tạo lại GLB sẽ tốn credit không cần thiết.</p>
+<h2>5.2. Mẫu báo lỗi năm câu</h2>
+<p><strong>Hiện tại:</strong> mô tả ngắn bản đang chạy. <strong>Cách tái hiện:</strong> bấm gì, ở màn nào. <strong>Thực tế:</strong> thấy gì. <strong>Mong muốn:</strong> muốn thấy gì. <strong>Phải giữ:</strong> phần đang đúng.</p>
+<p>Ví dụ giả định dưới đây dùng để luyện cách báo lỗi; đây chưa phải lỗi đã xác nhận trong bản game Mira.</p>
+<blockquote>
+<p>Game Mira trên điện thoại dọc, đợt quái thứ hai. Tôi giữ nút Tia Linh Quang khi quái ở gần. Thực tế, tia sáng ra nhưng quái không mất máu. Mong muốn tia gây sát thương khi chạm đúng mục tiêu. Hãy kiểm va chạm và thời gian hồi chiêu, sửa đúng lỗi này; giữ nguyên ngoại hình Mira, tốc độ quái và các chiêu khác. Chạy thử trên localhost, cho tôi xem cách tái hiện trước và sau khi sửa.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> lặp lại cùng thao tác ba lần; kiểm quái mất máu và các chiêu khác vẫn chạy. <strong>Nếu chưa rõ:</strong> yêu cầu agent chỉ ra log hoặc đoạn luật chơi nó đã kiểm, rồi mới tiếp tục sửa.</p>
+<h2>5.3. Giữ bản tốt làm điểm quay về</h2>
+<p>Trước khi đổi GLB, rig hay cả hệ chiêu, lưu một phiên bản đang chơi tốt. Bản game hiện có là mốc so sánh. Nếu hoạt ảnh chạy mới đẹp hơn nhưng nút chạm hỏng, chưa nên coi là nâng cấp hoàn thành.</p>
+<p>Trong repo Mira, tên file đã tách theo việc: phần nhân vật ở player.js, quái ở enemies.js, chiêu ở skills.js, hiệu ứng ở fx.js, luật chơi ở logic.js. Người mới không cần sửa mã; chỉ cần nhờ agent nói <strong>file nào liên quan</strong> và vì sao. Nếu agent định sửa nhiều phần không liên quan, hãy dừng để kiểm phạm vi.</p>
+<h2>5.4. Token giảm khi thông tin đúng</h2>
+<p>Đừng dán toàn bộ lịch sử chat để hỏi một lỗi. Gửi <strong>ảnh đúng khoảnh khắc</strong>, <strong>mô tả năm câu</strong>, <strong>tên dự án/file liên quan</strong> và <strong>điều đã thử</strong>. Ngược lại, câu “fix game đi” thường dẫn tới nhiều vòng đoán hơn.</p>
+<p><strong>Prompt dừng vòng lặp:</strong></p>
+<blockquote>
+<p>Chúng ta đã thử sửa lỗi này hai lần mà chưa đạt. Hãy ngừng sửa mã. Tóm tắt điều đã xác nhận, điều còn chưa biết và một phép kiểm tiếp theo có thể phân biệt các nguyên nhân. Đừng tạo lại asset hoặc đổi nhiều file trước khi có kết quả kiểm.</p>
+</blockquote>
+<figure><img alt="Mira và vòng cảnh báo của trùm" aria-label="Phóng to hình: Mira và vòng cảnh báo của trùm" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-12-slam.png" tabindex="0"/><figcaption>Hình 5.2 — Một ảnh đúng thời điểm giúp agent hiểu lỗi liên quan đến cảnh báo, va chạm hay nút lướt; ảnh cũng giúp bạn so cùng tình huống sau khi sửa.</figcaption></figure>
+
+<h2>Trước khi sang chương 6</h2>
+<ul>
+<li>[ ] Tôi phân loại lỗi trước khi nhờ sửa.</li>
+<li>[ ] Tôi có cách tái hiện và ảnh đúng khoảnh khắc.</li>
+<li>[ ] Tôi giữ bản game đang chạy tốt để so sau mỗi thay đổi.</li>
+</ul>
+<p>Chương 6 tiếp tục với Mira: chuẩn bị nhân vật, quái và các asset trước khi tạo bản có xương và chuyển động.</p>
+</div><div class="chapter-end"><span>Hết chương 5</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-06" data-title="Chương 6 — Chuẩn bị nhân vật và quái cho bản Mira tiếp theo"><div class="chapter-kicker">CHƯƠNG 06 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 6 — Chuẩn bị nhân vật và quái cho bản Mira tiếp theo</h1>
+<p>Game Mira đã chơi được. Việc tiếp theo là nâng chất lượng từng asset: Mira cần chuyển động tay chân, quái cần có hình dáng riêng. Trước khi gọi Tripo thêm lần nữa, hãy xác định thứ nào cần <strong>mô hình 3D mới</strong>, thứ nào chỉ cần chỉnh Three.js.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> chuẩn bị ảnh tham chiếu, chọn cách tạo asset và nhận ra đâu là concept 2D, đâu là mô hình 3D thật.</p>
+<h2>6.1. Ba loại asset trong game hiện tại</h2>
+<table>
+<thead>
+<tr>
+<th>Trong game</th>
+<th>Hiện được tạo thế nào?</th>
+<th>Có cần Tripo ngay không?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mira</td>
+<td>GLB dựng từ ảnh nhiều góc trong Tripo</td>
+<td>Không cần tạo lại để game chạy; cần bản có rig nếu muốn tay chân cử động</td>
+</tr>
+<tr>
+<td>Slime, Ma Trơi, Thạch Quỷ, trùm</td>
+<td>Hình khối và hiệu ứng bằng Three.js</td>
+<td>Chưa cần; có thể đổi từng quái sau khi chốt thiết kế</td>
+</tr>
+<tr>
+<td>Linh Tinh, cột sáng, cổng</td>
+<td>Hình học và ánh sáng bằng Three.js</td>
+<td>Không; hiệu ứng có thể chỉnh bằng mã</td>
+</tr>
+</tbody>
+</table>
+<figure><img alt="Bốn hướng concept cho quái trong thế giới Mira" aria-label="Phóng to hình: Bốn hướng concept cho quái trong thế giới Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/enemy-concepts.png" tabindex="0"/><figcaption>Hình 6.1 — Bộ concept 2D cho bốn cấp độ quái: slime, hồn lửa, người đá và trùm đá tím. Đây là hướng mỹ thuật để duyệt; game hiện tại chưa dùng bốn mô hình 3D từ ảnh này.</figcaption></figure>
+
+<h2>6.2. Làm bộ ảnh nhân vật để phát triển chuyển động</h2>
+<p>Bốn ảnh trước/sau/trái/phải giúp Tripo dựng hình. Để chuẩn bị <strong>animation</strong>, cần thêm một ảnh nhân vật toàn thân ở dáng trung tính, tay tách khỏi thân và chân tách nhau. Dáng này giúp công cụ xác định tay, chân, vai, hông. Những ảnh chạy/chém dùng để duyệt phong cách động tác, <strong>không thay cho file có xương</strong>.</p>
+<figure><img alt="Concept tư thế Mira từ trung tính đến hành động" aria-label="Phóng to hình: Concept tư thế Mira từ trung tính đến hành động" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/mira-pose-concepts.png" tabindex="0"/><figcaption>Hình 6.2 — Bốn ảnh concept: dáng chữ T, dáng đứng nghỉ, chạy và ra chiêu. Ảnh chỉ mô tả ý định chuyển động; phần khớp và clip phải được tạo, xuất và kiểm trong file 3D riêng.</figcaption></figure>
+
+<p><strong>Prompt tạo ảnh tham chiếu bằng ChatGPT:</strong></p>
+<blockquote>
+<p>Dựa trên ảnh chính diện Mira đã duyệt, tạo một ảnh toàn thân tư thế chữ T để chuẩn bị gắn xương 3D. Giữ chính xác tóc, tai, áo khoác xanh ngọc, khăn san hô, túi, quần và hai chiếc bốt. Hai tay đưa ngang, bàn tay mở; hai chân tách nhẹ, đứng thẳng. Nền trắng, ánh sáng đều, không cắt tai hoặc giày. Không thay thiết kế nhân vật. Sau đó tạo thêm ba ảnh riêng để duyệt động tác: đứng nghỉ, chạy và ra chiêu.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> đặt ảnh mới cạnh ảnh đã dùng dựng GLB. Nếu dáng chữ T có áo/túi/giày khác, nó là <strong>concept sai nhận diện</strong>; sửa ảnh trước. Nếu chỉ tư thế thay đổi còn nhận diện giữ nguyên, có thể dùng nó để nói rõ mục tiêu rig. <strong>Nếu lỗi:</strong> yêu cầu sửa đúng món đồ bị lệch, không tạo nhân vật mới.</p>
+<h2>6.3. Tripo Studio: dựng hình, Retopo, Rig và Animate</h2>
+<p>Ảnh preview H3.1 ban đầu có khoảng 502.944 tam giác và giữ ngoại hình tốt. GLB đời đầu đưa vào game có một mesh, không có rig hoặc clip. Bản repo hiện tại đã thay bằng GLB nhẹ hơn có 65 xương; mã game dùng những xương ấy để làm chân tay cử động. Vì thế, bước chuẩn bị asset quyết định phần nào Three.js có thể làm được.</p>
+<p>Trong case Mira, Tripo đã yêu cầu <strong>Retopo</strong> trước khi Rig. Trình tự thực tế là: model đã duyệt → tạo lại lưới và kiểm ngoại hình → gắn xương, kiểm khớp → thử từng clip trong Animate → xuất GLB và kiểm file. Tripo khuyến nghị nhân vật hai chân ở tư thế chữ T hoặc A cho auto-rig; tư thế lạ, đồ rộng hoặc phần thân bị che có thể gắn xương chưa đúng. Chương 7 cho xem ảnh trước/sau Retopo, bộ xương và GIF chuyển động thật của Mira. <a href="https://www.tripo3d.ai/help/features/is-it-possible-to-upload-my-existing-model-for-animation" rel="noopener noreferrer" target="_blank">Tripo Help Center</a>, <a href="https://developers.tripo3d.ai/en/docs/animations-rig" rel="noopener noreferrer" target="_blank">Tripo Auto Rig</a>.</p>
+<p><strong>Các điểm phải nhìn khi thử rig:</strong> khớp gối nằm ở gối, không giữa bốt; khuỷu tay gập đúng chỗ; áo và túi không kéo méo vô lý; chân không xuyên đất khi chạy. Nếu model một khối quá dày hoặc nhiều chi tiết chồng, auto-rig có thể không đạt. Khi đó, chọn model phiên bản dễ gắn xương hơn hoặc xử lý asset ở công cụ chuyên 3D; không bảo AI “sửa bằng prompt” khi chưa xem mô hình.</p>
+<h2>6.4. Thiết kế quái theo thứ tự dễ đến khó</h2>
+<p>Trong ảnh concept, slime có một khối thân rõ; hồn lửa là vật bay; người đá có tay chân; trùm có nhiều mảnh và sừng. Đây là trình tự học tốt: thử thay <strong>slime</strong> trước. Nếu thay cả bốn quái cùng lúc, bạn khó biết lỗi do asset, chuyển động hay cân bằng game.</p>
+<p><strong>Prompt nâng cấp một quái:</strong></p>
+<blockquote>
+<p>Trong game Mira, hãy giữ nguyên luật chơi của Slime Bóng Tối. Trước tiên phân tích hình khối hiện tại và ảnh concept tôi gửi. Đề xuất cách làm cho slime dễ nhận ra hơn từ camera game: giữ hình khối Three.js hay tạo GLB riêng. Chỉ chọn một cách, làm một bản thử, mở localhost để tôi so trước/sau. Chưa đụng tới Ma Trơi, Thạch Quỷ hoặc trùm.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> nhìn slime ở kích thước nhỏ trong game, thử nó tiến lại và nhận đòn. <strong>Nếu đẹp ở ảnh cận nhưng khó thấy trong game:</strong> tăng độ tương phản hoặc đơn giản hóa hình, không vội tăng polycount.</p>
+<h2>Trước khi sang chương 7</h2>
+<ul>
+<li>[ ] Tôi phân biệt ảnh concept, mô hình GLB và bản có xương.</li>
+<li>[ ] Tôi có ảnh Mira ở dáng trung tính để diễn đạt mục tiêu rig.</li>
+<li>[ ] Tôi chọn một quái đầu tiên để nâng cấp, giữ nguyên luật chơi.</li>
+</ul>
+<p>Chương 7 theo từng bước Retopo, Rig và Animate trên Mira, rồi chỉ cách kiểm GLB trước khi nối chuyển động vào game.</p>
+</div><div class="chapter-end"><span>Hết chương 6</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-07" data-title="Chương 7 — Từ Retopo đến chuyển động của Mira"><div class="chapter-kicker">CHƯƠNG 07 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 7 — Từ Retopo đến chuyển động của Mira</h1>
+<p>Phiên bản game đầu tiên dùng Mira không có xương: lúc chạy, cả mô hình nhún và nghiêng như một bức tượng. Tác giả sau đó làm Retopo, gắn xương và thử chuyển động trong Tripo. <strong>Repo game mới nhất đã dùng một GLB có 65 xương</strong> và có Xưởng chuyển động để xem từng động tác. Chương này đi theo đúng quá trình ấy, kể cả điều bất ngờ ở bước xuất file.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> giao đúng việc cho Tripo và agent, kiểm tư thế chạy, phân biệt hoạt ảnh nhân vật với hiệu ứng phép và luật chơi.</p>
+<figure><img alt="Ba tư thế concept cho Mira" aria-label="Phóng to hình: Ba tư thế concept cho Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/mira-action-concepts.png" tabindex="0"/><figcaption>Hình 7.1 — Ba ảnh phác thảo dáng chiến đấu, ra chiêu và đứng nghỉ. Chúng giúp duyệt ngôn ngữ cơ thể; đây chưa phải các clip có thể phát trong game.</figcaption></figure>
+
+<h2>7.1. Rig khác Animate ở đâu?</h2>
+<p>Hãy hình dung con rối: <strong>GLB ban đầu</strong> giống tượng có màu; <strong>rig</strong> là bộ khớp ẩn trong tượng; <strong>clip</strong> là chuỗi tư thế theo thời gian. Three.js có thể phát clip nếu file chứa chúng; game Mira hiện dùng mã để điều khiển các xương vì file Tripo xuất ra chưa mang theo clip. <a href="https://threejs.org/manual/pages/animation-system.html" rel="noopener noreferrer" target="_blank">Three.js Animation System</a>.</p>
+<p>Một nhân vật có thể chỉ có <strong>một mesh</strong> mà vẫn cử động được. File Mira đời đầu thiếu dữ liệu xương và liên kết da với xương; file mới đã có chúng. Bốn lớp cần phân biệt là:</p>
+<table>
+<thead>
+<tr>
+<th>Thành phần</th>
+<th>Hiểu đơn giản</th>
+<th>Quan sát trên Mira</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mesh</td>
+<td>Bề mặt có màu và hình khối</td>
+<td>Mặt, tóc, áo, quần, bốt</td>
+</tr>
+<tr>
+<td>Rig / skeleton</td>
+<td>Bộ xương và các khớp</td>
+<td>Vai, khuỷu, hông, gối, cổ chân xoay riêng</td>
+</tr>
+<tr>
+<td>Skin weight</td>
+<td>Mức độ mỗi vùng da đi theo khớp</td>
+<td>Quần gập theo gối mà không gãy khúc</td>
+</tr>
+<tr>
+<td>Clip animation</td>
+<td>Chuỗi tư thế theo thời gian</td>
+<td>Đứng thở, đi, chạy, tung chiêu</td>
+</tr>
+</tbody>
+</table>
+<p>Một <strong>pose</strong> là một tư thế ở một thời điểm. <strong>Rig</strong> tạo khớp và liên kết bề mặt với khớp; <strong>Animate</strong> tạo các pose nối tiếp thành clip. Có rig mà chưa có clip, Mira vẫn chưa tự đi. Có clip nhưng xuất file thiếu rig hoặc skin, game không thể gập chân tay đúng.</p>
+<figure><img alt="Quy trình tạo chuyển động cho Mira" aria-label="Phóng to hình: Quy trình tạo chuyển động cho Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/mira-rig-pipeline.svg" tabindex="0"/><figcaption>Sơ đồ 7.1 — Từ model Mira qua Retopo, Rig, Animate đến file GLB và game. Mỗi bước có một kết quả cần kiểm trước khi đi tiếp.</figcaption></figure>
+
+<table>
+<thead>
+<tr>
+<th>Mong muốn</th>
+<th>Cần thêm gì?</th>
+<th>Ai làm phần nào?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mira đứng thở nhẹ</td>
+<td>Chuyển động idle trên xương</td>
+<td>Bản game hiện tại dùng chuyển động do mã tạo; clip Tripo chỉ dùng nếu kiểm thấy có trong GLB</td>
+</tr>
+<tr>
+<td>Mira đi và chạy</td>
+<td>Chuyển động walk/run trên xương</td>
+<td>Agent đồng bộ nhịp chân với quãng đường nhân vật đi</td>
+</tr>
+<tr>
+<td>Mira chém bằng tay</td>
+<td>Chuyển động attack trên thân trên</td>
+<td>Agent cho động tác phát khi chiêu kích hoạt, kể cả lúc chạy</td>
+</tr>
+<tr>
+<td>Mira nhảy qua vật cản</td>
+<td>Chuyển động jump <strong>và</strong> luật nhảy/va chạm</td>
+<td>Chuyển động tạo dáng; game quyết định độ cao, thời điểm tiếp đất</td>
+</tr>
+<tr>
+<td>Tia sáng bắn ra</td>
+<td>Không cần rig của Mira để vẽ tia</td>
+<td>Three.js tạo hiệu ứng; luật chơi tính trúng đích</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Điểm quan trọng:</strong> dù chuyển động đến từ clip hay mã điều khiển xương, dáng nhảy chỉ là phần nhìn thấy. Nếu game chưa có cơ chế nhảy, va chạm và nút nhảy, nhân vật có thể làm động tác bật lên mà vẫn đứng một chỗ.</p>
+<h2>7.2. Quy trình nâng cấp đúng thứ tự</h2>
+<p><strong>Bước 1 — Giữ bản gốc.</strong> Sao lưu GLB đời đầu và chụp cùng một góc Mira trong game. Bản gốc là điểm so nếu rig mới làm méo mặt, áo hoặc bốt.</p>
+<p><strong>Bước 2 — Xử lý yêu cầu Retopo của Tripo.</strong> Trong lần làm Mira này, Tripo yêu cầu <strong>Retopology</strong> trước khi gắn xương. Retopo là tạo lại lưới bề mặt để model nhẹ và các vùng khớp có cấu trúc phù hợp hơn. Đây là thao tác trên <strong>model 3D</strong>, chưa tạo xương hay chuyển động. Đừng suy ra mọi dự án đều cần chọn cùng một thông số; hãy nhìn mục tiêu và kiểm bản xem trước.</p>
+<figure><img alt="Mira trước khi làm lại lưới trong Tripo" aria-label="Phóng to hình: Mira trước khi làm lại lưới trong Tripo" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-mira-retopo-before.png" tabindex="0"/><figcaption>Hình 7.2 — Tripo báo model gốc của Mira có 502.944 mặt tam giác. Ảnh chụp giao diện Retopo trước khi xử lý; lựa chọn Triangle trong ảnh không phải cấu hình cuối cùng đã dùng.</figcaption></figure>
+
+<p>Với nhân vật sẽ gập tay chân, tác giả đã chọn <strong>Quad</strong>, bật <strong>Smart Mesh</strong> và đặt <strong>Polygon Count 20.000</strong> theo giới hạn giao diện lúc đó. Quad giúp bố trí các vòng lưới quanh khớp dễ kiểm hơn, nhưng chất lượng gập vẫn phụ thuộc lưới và skin weight thực tế; không có nút nào bảo đảm tự động giữ nguyên mọi chi tiết. Con số 20.000 là <strong>mức yêu cầu</strong>, không phải số mặt của file kết quả. Sau khi xử lý, màn hình Rig ghi <strong>10.756 mặt Quad</strong>. So trước–sau ở mặt, mắt, tóc, tai, ngón tay, túi và bốt trước khi bấm Rig. Nếu chi tiết quan trọng bị mất, quay lại lịch sử và thử cấu hình khác.</p>
+<p><strong>Bước 3 — Gắn xương trong Tripo.</strong> Mở bản Mira sau Retopo, vào <strong>Rig</strong>, chọn <strong>Humanoid</strong> vì Mira có hai tay và hai chân. Giao diện gợi ý dáng <strong>T hoặc A</strong>: tay tách khỏi thân giúp vùng vai, nách và hông dễ nhận hơn. Danh sách <strong>Skeleton Preset</strong> là các định dạng bộ xương; ảnh kết quả của tác giả hiển thị preset Mixamo ngay <strong>bên trong Tripo</strong>. Người mới không cần chuyển sang phần mềm khác để làm theo case này. <a href="https://www.tripo3d.ai/help/features/is-it-possible-to-upload-my-existing-model-for-animation" rel="noopener noreferrer" target="_blank">Tripo Help Center</a>.</p>
+<figure><img alt="Màn hình Rig của Tripo với nhân vật Mira" aria-label="Phóng to hình: Màn hình Rig của Tripo với nhân vật Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-mira-rig-screen.png" tabindex="0"/><figcaption>Hình 7.3 — Tripo Studio ở bước chuẩn bị Auto Rig cho Mira: chọn Humanoid và xem các tùy chọn bộ xương. Ảnh này chưa phải kết quả.</figcaption></figure>
+
+<p><strong>Bước 3a — Kiểm kết quả rig trước khi tạo clip.</strong> Ảnh kết quả cho thấy xương hông, cột sống, vai, tay, gối và chân đã hiện đúng vùng cơ thể; bàn tay cũng có các khớp ngón. Đây là <strong>bằng chứng có xương</strong>, chưa chứng minh clip hoạt ảnh đã tốt. Xoay Mira từ trước, bên và sau; kiểm gối, bốt, vạt áo và túi khi thử động tác. Tai thỏ chưa có xương riêng nên sẽ đi theo đầu; trong phiên bản nhập môn, điều đó chấp nhận được.</p>
+<figure><img alt="Bộ xương của Mira sau khi gắn trong Tripo" aria-label="Phóng to hình: Bộ xương của Mira sau khi gắn trong Tripo" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-mira-rigged.png" tabindex="0"/><figcaption>Hình 7.4 — Kết quả thực tế sau Retopo và Auto Rig: Tripo hiển thị 10.756 mặt Quad cùng bộ xương của Mira. Cần thử chuyển động để biết phần da quanh khớp biến dạng ra sao.</figcaption></figure>
+
+<p><strong>Bước 4 — Tạo từng clip trong Tripo Animate.</strong> Bắt đầu bằng <strong>idle, walk, run</strong>; thêm <strong>stop</strong> nếu tìm được chuyển động phù hợp. Chỉ thêm chiêu, nhảy, trúng đòn hoặc ngã sau khi đi và chạy đạt. Thử preset phù hợp trước, xem từng clip ở góc trước và bên. Nếu preset chưa đúng tính cách Mira, dùng ô <strong>Create Your Own Animation</strong> để mô tả một động tác ngắn mỗi lần. Một yêu cầu chứa cả đứng, chạy, nhảy và đánh sẽ khó kiểm lỗi.</p>
+<figure><img alt="Màn hình Animate của Tripo với nhân vật Mira" aria-label="Phóng to hình: Màn hình Animate của Tripo với nhân vật Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-mira-animate-screen.png" tabindex="0"/><figcaption>Hình 7.5 — Khu vực Animate của Tripo có preset và ô mô tả chuyển động riêng. Đây là nơi chọn hoặc tạo clip sau khi rig đã đạt.</figcaption></figure>
+
+<p><strong>Mô tả mẫu để thử, mỗi lần một động tác:</strong></p>
+<blockquote>
+<p><strong>Đứng:</strong> Nhân vật đứng yên, thở nhẹ, vai nhấc rất ít, đầu nhìn quanh chậm, hai bốt giữ trên mặt đất. Chuyển động lặp mượt, không bước đi.</p>
+</blockquote>
+<blockquote>
+<p><strong>Đi:</strong> Nhân vật đi tại chỗ với bước ngắn tự nhiên, tay đối nhịp với chân, gót chạm rồi đến mũi chân, đầu ít rung. Vòng lặp không dịch chuyển nhân vật khỏi điểm bắt đầu.</p>
+</blockquote>
+<blockquote>
+<p><strong>Chạy:</strong> Nhân vật chạy tại chỗ, hai chân luân phiên, tay đánh nhịp rõ hơn lúc đi, thân nghiêng nhẹ. Giữ vòng lặp đều, không làm tai, áo hoặc bốt biến dạng.</p>
+</blockquote>
+<p>Nếu Tripo có lựa chọn <strong>in-place / tại chỗ</strong>, dùng cho game Mira vì mã game đã quyết định nhân vật đi đâu. Nếu không thấy tùy chọn này, xem preview và nhờ agent kiểm clip có kéo model tiến về phía trước không. Sau khi các clip đạt, xuất GLB có skeleton và animation; mở lại file để xác nhận dữ liệu thực sự có trong file. <a href="https://www.tripo3d.ai/blog/tripo-studio-tutorial-english" rel="noopener noreferrer" target="_blank">Tripo Studio</a>; <a href="https://www.tripo3d.ai/blog/apply-preset-animations-to-3d-character" rel="noopener noreferrer" target="_blank">Tripo: preset và xuất nhân vật có hoạt ảnh</a>.</p>
+<p><strong>Ba clip tác giả đã xem thử trên chính Mira:</strong></p>
+<figure><img alt="Mira đứng với chuyển động nhẹ trong Tripo" aria-label="Phóng to hình: Mira đứng với chuyển động nhẹ trong Tripo" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-mira-idle.gif" tabindex="0"/><figcaption>Hình 7.6 — GIF preview clip idle: Mira đứng tại chỗ và cử động nhẹ. Khi duyệt, nhìn độ rung của đầu, tay và bốt; giữ chuyển động vừa đủ để dáng đứng không thành nhún nhảy.</figcaption></figure>
+
+<figure><img alt="Mira đi bộ trong Tripo" aria-label="Phóng to hình: Mira đi bộ trong Tripo" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-mira-walk.gif" tabindex="0"/><figcaption>Hình 7.7 — GIF preview clip walk: hai chân bước luân phiên. Cần kiểm ở cả góc bên và trong game để biết bốt có trượt trên nền khi gắn tốc độ di chuyển thật hay không.</figcaption></figure>
+
+<figure><img alt="Mira nhảy trong Tripo" aria-label="Phóng to hình: Mira nhảy trong Tripo" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/tripo-mira-jump.gif" tabindex="0"/><figcaption>Hình 7.8 — GIF preview clip jump: Mira bật lên và trở về dáng đứng. Clip diễn tả tư thế; luật nhảy, va chạm và thời điểm tiếp đất vẫn do game quyết định.</figcaption></figure>
+
+<p>Sau khi duyệt <strong>idle</strong> và <strong>walk</strong>, tìm preset <strong>run</strong> vừa phải, không cần kiểu chạy nước rút. <strong>Stop</strong> là clip tùy chọn: nếu không có preset phù hợp, game có thể chuyển mượt từ walk/run về idle trước. Chỉ tạo stop riêng khi cảnh dừng còn giật và bạn đã xác định rõ lỗi. Sau đó mới thử slash/cast/jump theo nhu cầu game; mỗi lần thêm một clip và kiểm trong game. Tên clip, số credit và cách gộp clip có thể thay đổi theo giao diện, nên xem danh sách clip trong file xuất ra. Nếu Tripo xuất từng clip thành từng GLB, đặt tên dễ hiểu như <code>mira_idle.glb</code>, <code>mira_walk.glb</code>, <code>mira_run.glb</code> và gửi đủ cho agent; nếu xuất được chung, dùng một file <code>mira_rigged.glb</code>.</p>
+<p><strong>Bước 5 — Kiểm file xuất ra, rồi mới nối vào game.</strong> Agent đã đọc file Tripo và phát hiện: <strong>có xương, có liên kết da, nhưng không có clip hoạt ảnh</strong>. Một số GLB được đặt tên theo động tác còn thiếu cả skin. Vì vậy ba GIF ở trên là preview trong Tripo, không phải bằng chứng các động tác đã nằm trong GLB. Repo game hiện dùng <code>public/mira-rigged.glb</code> làm nhân vật chính; <code>public/mira.glb</code> không xương là bản dự phòng.</p>
+<figure><img alt="Bảng tư thế trên bộ xương Mira trong repo game" aria-label="Phóng to hình: Bảng tư thế trên bộ xương Mira trong repo game" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-repo/rig-poses.jpg" tabindex="0"/><figcaption>Hình 7.9 — Tư liệu từ repo game mới nhất: mỗi động tác được so ở góc trước và góc nghiêng, kèm đường xương. Đây là chuyển động đã được dựng trên bộ xương trong game, khác với GIF preview trên Tripo.</figcaption></figure>
+
+<p><strong>Bước 6 — Tạo chuyển động trên bộ xương đã có.</strong> Trong repo, mã chuyển động điều khiển 65 xương để Mira đứng thở, đi, chạy, dừng, chém, bắn, nhảy, lướt, trúng đòn và ngã. Nhịp chân được gắn với quãng đường Mira thực sự đi để giảm trượt bốt; khi ngừng chạy có động tác phanh. Người mới không cần viết các góc xương bằng tay: hãy giao agent mở Xưởng chuyển động và sửa đúng động tác chưa đạt. Nếu một lần xuất Tripo sau này có clip dùng được, agent có thể kiểm và thay từng động tác, không phải làm lại cả game.</p>
+<p><strong>Prompt cho agent sau khi xuất GLB:</strong></p>
+<blockquote>
+<p>Tôi gửi GLB mới của Mira từ Tripo. Trước khi thay vào game, hãy báo riêng: (1) có bộ xương và skin không, (2) có bao nhiêu clip thực sự nằm trong file, tên và thời lượng từng clip, (3) kích thước file. Giữ GLB cũ làm dự phòng. Nếu không có clip, dùng bộ xương để tạo bản thử đứng, đi và chạy trong game; mở Xưởng chuyển động cho tôi xem trước, bên và góc chơi. Đồng bộ bước chân với tốc độ di chuyển, giữ nguyên quái và luật chơi.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> đứng 3 giây, chạy thẳng, đổi hướng, dừng, chém. Nếu chân trượt, hỏi agent so <strong>tốc độ di chuyển trong game</strong>, <strong>tốc độ phát clip</strong> và <strong>chuyển động có sẵn trong clip</strong>. Nếu Mira chạy ra khỏi vị trí điều khiển, kiểm clip có dịch chuyển toàn thân hay không trước khi thêm mã bù. <strong>Nếu rig méo ở đầu gối hoặc áo:</strong> quay về Tripo/asset; đổi mã Three.js thường không sửa được trọng lượng khớp sai.</p>
+<p><strong>Nếu xuất xong nhưng game vẫn chỉ nhún cả người:</strong> yêu cầu agent báo file GLB mới có <code>skin</code> và <code>animation</code> hay không; đừng suy ra từ nút Export. <strong>Nếu bốt lún đất:</strong> kiểm vị trí gốc nhân vật, độ cao đặt model và khung hình chân chạm đất. <strong>Nếu vai hoặc túi méo:</strong> kiểm preview của rig ở Tripo trước; lỗi nằm ở liên kết da, không phải ở tốc độ chạy của game.</p>
+<h2>7.3. Từ dáng đẹp đến tư thế chơi đẹp</h2>
+<p>Một ảnh tư thế “ngầu” chưa chắc đọc được trong camera game nhìn từ trên. Hãy thử trên nền thật, ở kích thước Mira xuất hiện khi chơi. Khi chạy, thân nghiêng nhẹ theo hướng; hai tay và hai chân đổi nhịp; bốt chạm đất rõ. Khi chém, người chơi phải nhận ra ba nhịp <strong>chuẩn bị → ra đòn → hồi về</strong>. Nếu ra chiêu quá nhanh hoặc ánh sáng che tay, giảm hiệu ứng hoặc kéo rõ nhịp động tác trước khi thêm chi tiết.</p>
+<figure><img alt="Năm tư thế tham chiếu chuyển động của Mira" aria-label="Phóng to hình: Năm tư thế tham chiếu chuyển động của Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/mira-motion-storyboard-v1.png" tabindex="0"/><figcaption>Hình 7.10 — Bộ concept 2D để duyệt lần lượt: đứng, hai pha bước, chạy và bật nhảy. Năm ảnh chưa phải clip hoạt ảnh của GLB. Hãy dùng chúng làm tiêu chí kiểm nhịp tay–chân, hướng thân và hình dáng hai chiếc bốt sau khi gắn xương.</figcaption></figure>
+
+<p><strong>Bài tập ngắn:</strong> chọn hai ảnh bước đi ở giữa, chỉ ra chân nào đang đưa lên và chân nào đang chịu lực. Sau khi có bản rig, xem clip ở tốc độ chậm và so đúng hai khoảnh khắc ấy. Nếu cả hai bốt cùng lướt trên đất, cần sửa clip hoặc tốc độ phát trước khi thêm hiệu ứng chạy.</p>
+<figure><img alt="Mira đang ra chiêu trong game" aria-label="Phóng to hình: Mira đang ra chiêu trong game" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-05-slash.png" tabindex="0"/><figcaption>Hình 7.11 — Ảnh chiến đấu cho thấy vệt chém và phản hồi trúng đòn. Bảng tư thế Hình 7.9 cho thấy động tác chém đã được dựng trên bộ xương ở bản game mới.</figcaption></figure>
+
+<h2>7.4. Phép thuật có ba lớp dễ kiểm</h2>
+<p>Lấy <strong>Tia Linh Quang</strong> làm ví dụ. Lớp 1 là <strong>luật</strong>: chiêu bắn khi nào, trúng ai, gây bao nhiêu sát thương. Lớp 2 là <strong>tư thế</strong>: Mira hướng tay về mục tiêu, nếu đã có clip phù hợp. Lớp 3 là <strong>hiệu ứng</strong>: tia sáng, hạt, âm thanh, rung nhẹ và số sát thương. Chỉ làm lớp 3 sẽ đẹp mắt nhưng dễ sai cảm giác trúng đích; chỉ làm lớp 1 thì khó biết mình đã đánh trúng.</p>
+<figure><img alt="Hiệu ứng Vòng Tinh Tú trong game Mira" aria-label="Phóng to hình: Hiệu ứng Vòng Tinh Tú trong game Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-07-nova.png" tabindex="0"/><figcaption>Hình 7.12 — Ánh sáng lan quanh Mira là hiệu ứng của chiêu Vòng Tinh Tú. Khi nâng cấp, kiểm vòng sáng có trùng thời điểm gây sát thương và có che nhân vật, quái hoặc vòng cảnh báo không.</figcaption></figure>
+
+<p><strong>Prompt nâng cấp một chiêu:</strong></p>
+<blockquote>
+<p>Hãy nâng cấp riêng chiêu Tia Linh Quang trong game Mira. Trước tiên mô tả ba lớp hiện tại: luật trúng đích, tư thế nhân vật và hiệu ứng hình/âm. Giữ nguyên sát thương và hồi chiêu. Nếu GLB mới có clip phù hợp, phát clip khi bắn; nếu không, nói rõ và giữ tư thế hiện có. Làm tia dễ nhìn nhưng không che quái hay cảnh báo nguy hiểm. Mở localhost, thử một mục tiêu đứng gần và một mục tiêu di chuyển.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> nhìn thời điểm bấm, thời điểm tia chạm, thanh máu quái và lúc chiêu hồi. Nếu hiệu ứng đẹp mà máu không giảm, sửa luật/va chạm; nếu máu giảm trước khi tia chạm, đồng bộ thời điểm.</p>
+<h2>Trước khi sang chương 8</h2>
+<ul>
+<li>[ ] Tôi phân biệt file Mira đời đầu không xương với file mới có 65 xương nhưng không có clip xuất từ Tripo.</li>
+<li>[ ] Tôi phân biệt được mức Retopo đã chọn với số mặt Quad thực tế của bản kết quả.</li>
+<li>[ ] Tôi duyệt riêng động tác đứng, đi và chạy trước khi thêm động tác đánh.</li>
+<li>[ ] Tôi kiểm file GLB có rig, skin và bao nhiêu clip; nếu chưa có clip, tôi yêu cầu agent thử chuyển động trên bộ xương như repo Mira.</li>
+<li>[ ] Tôi thử chân, gối, tay và bốt ở góc camera chơi.</li>
+<li>[ ] Tôi tách luật, tư thế và hiệu ứng của một chiêu.</li>
+</ul>
+<p>Chương 8 chỉ cách tiếp tục từ chính repo Mira đã chạy, thay vì bắt đầu dự án mới mỗi lần muốn nâng cấp.</p>
+</div><div class="chapter-end"><span>Hết chương 7</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-08" data-title="Chương 8 — Mở rộng repo Mira thay vì làm game mới"><div class="chapter-kicker">CHƯƠNG 08 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 8 — Mở rộng repo Mira thay vì làm game mới</h1>
+<p>Mira đã có một repo chạy được. Mỗi ý tưởng tiếp theo nên bắt đầu từ bản đó: xem hiện trạng, chọn một phần, sửa và chơi lại. Đây là cách người mới làm chủ dự án mà không cần tự viết mã.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> giao agent đọc đúng repo, chọn phạm vi sửa và giữ bản cũ làm điểm quay về.</p>
+<figure><img alt="Màn mở đầu game Mira" aria-label="Phóng to hình: Màn mở đầu game Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-01-title.png" tabindex="0"/><figcaption>Hình 8.1 — Đây là màn mở đầu của bản Mira hiện tại. Khi thêm hoạt ảnh, quái hoặc phép, màn này và lối vào game phải tiếp tục hoạt động.</figcaption></figure>
+
+<h2>8.1. Đọc repo như đọc sơ đồ căn nhà</h2>
+<table>
+<thead>
+<tr>
+<th>Bạn muốn thay</th>
+<th>Nơi agent cần kiểm trong repo Mira</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mira hiện và chuyển động</td>
+<td><code>player.js</code>, <code>mira-rigged.glb</code>, thư mục <code>src/anim/</code></td>
+</tr>
+<tr>
+<td>Quái và trùm</td>
+<td>enemies.js, logic.js</td>
+</tr>
+<tr>
+<td>Tia sáng, vệt chém, hạt</td>
+<td>skills.js, fx.js</td>
+</tr>
+<tr>
+<td>Đảo bay, cổng, cây cỏ</td>
+<td>world.js</td>
+</tr>
+<tr>
+<td>Nút chạm và bàn phím</td>
+<td>input.js, style.css</td>
+</tr>
+<tr>
+<td>Tiếng bước, chiêu và nhạc nền</td>
+<td>audio.js, thư mục public/audio</td>
+</tr>
+<tr>
+<td>Xem từng chuyển động ở nhiều góc</td>
+<td>studio.js, thư mục src/anim</td>
+</tr>
+<tr>
+<td>Luồng màn chơi, camera, HUD</td>
+<td>main.js</td>
+</tr>
+</tbody>
+</table>
+<p>Bạn không cần nhớ các tên file. Bảng này giúp nhận ra khi một yêu cầu nhỏ lại khiến agent sửa gần cả repo. Nếu muốn đổi màu tia sáng mà agent định làm lại cơ chế quái, hãy yêu cầu giải thích trước.</p>
+<h2>8.2. Một hành động trong game đi qua những phần nào?</h2>
+<p>Lấy việc <strong>nhặt Linh Tinh</strong> làm ví dụ. Người chơi đưa Mira tới tế đàn bằng bàn phím hoặc cần ảo. Game kiểm khoảng cách; khi đủ gần, vật trên tế đàn biến mất, phát tiếng nhặt, hiện cột sáng và mở đợt quái tiếp theo. Từ góc nhìn người chơi, đó là <strong>một khoảnh khắc</strong>. Trong repo, nhiều bộ phận phối hợp để tạo ra khoảnh khắc ấy.</p>
+<figure><img alt="Mira nhặt Linh Tinh trong game" aria-label="Phóng to hình: Mira nhặt Linh Tinh trong game" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-repo/game-pickup.jpg" tabindex="0"/><figcaption>Hình 8.2 — Ảnh thật từ repo game: Mira tới tế đàn và nhặt Linh Tinh. Hãy quan sát vật biến mất, hiệu ứng sáng, âm thanh và mục tiêu mới như một chuỗi phản hồi, không phải bốn tính năng rời.</figcaption></figure>
+
+<table>
+<thead>
+<tr>
+<th>Điều người chơi thấy</th>
+<th>Phần chịu trách nhiệm trong repo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mira tiến đến tế đàn</td>
+<td><code>input.js</code> nhận thao tác; <code>player.js</code> và <code>main.js</code> cập nhật vị trí</td>
+</tr>
+<tr>
+<td>Nhặt khi đến đủ gần</td>
+<td><code>main.js</code> kiểm khoảng cách và gọi xử lý nhặt</td>
+</tr>
+<tr>
+<td>Vật biến mất, ánh sáng xuất hiện</td>
+<td><code>world.js</code>, <code>fx.js</code></td>
+</tr>
+<tr>
+<td>Có tiếng nhặt và chữ báo</td>
+<td><code>audio.js</code>, giao diện trong <code>main.js</code></td>
+</tr>
+<tr>
+<td>Đợt quái tiếp theo bắt đầu</td>
+<td><code>logic.js</code>, <code>enemies.js</code>, <code>main.js</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bài học:</strong> khi báo lỗi, hãy nói <strong>khâu nào trong chuỗi chưa xảy ra</strong>. “Tôi chạm Linh Tinh, vật biến mất nhưng đợt quái không bắt đầu” giúp agent khoanh vùng nhanh hơn “game lỗi”.</p>
+<h2>8.3. Prompt giao việc trên repo có sẵn</h2>
+<blockquote>
+<p>Đây là repo <strong>Mira · Đêm Linh Quang</strong>. Trước tiên đọc README, chạy bản hiện tại và liệt kê phần nào đang hoạt động. Tôi muốn nâng cấp <strong>[một việc]</strong>. Hãy chỉ ra file liên quan, ảnh hoặc asset đầu vào cần có và hai cách kiểm kết quả. Giữ nguyên phần chơi đã chạy. Làm xong, mở localhost để tôi chơi lại trên desktop và bố cục mobile; báo file đã sửa và lỗi còn lại.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> chơi lại từ màn mở đầu đến nhặt Linh Tinh. Nếu nâng cấp quái, tiếp tục tới đúng đợt quái đó. <strong>Nếu lỗi:</strong> quay về bản trước rồi sửa trong phạm vi một việc.</p>
+<h2>8.4. Lấy một vòng nâng cấp làm mẫu</h2>
+<p>Giả sử bạn muốn thay Slime Bóng Tối bằng nhân vật trong ảnh concept. Đừng bắt đầu bằng “thay hết quái cho đẹp hơn”. Vòng đúng là: <strong>duyệt concept → chọn cách dựng hình → đổi đúng slime → giữ cách di chuyển/tấn công → chơi thử → so trước/sau</strong>. Nếu hình mới đẹp khi nhìn gần nhưng mờ trong camera game, chỉ sửa độ đọc của slime. Chưa cần động tới Ma Trơi, Thạch Quỷ hoặc trùm.</p>
+<figure><img alt="Mira giao chiến với quái trong bản hiện tại" aria-label="Phóng to hình: Mira giao chiến với quái trong bản hiện tại" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-05-slash.png" tabindex="0"/><figcaption>Hình 8.3 — Ảnh bản gốc để so sau khi thay một quái. Phải giữ được khoảng cách chiến đấu, vệt đánh và phản hồi khi quái trúng đòn.</figcaption></figure>
+
+<h2>8.5. Xưởng chuyển động giúp duyệt gì?</h2>
+<p>Repo có màn <strong>Xem chuyển động</strong> ngay ở menu đầu. Tại đây, người đọc có thể chọn đứng, đi, chạy, dừng hoặc ra chiêu; đổi góc camera, chỉnh tốc độ và bật đường xương. Đây là nơi tốt để kiểm <strong>dáng nhân vật</strong>, trước khi kiểm <strong>luật chơi</strong> trong màn chiến đấu. Bản này dùng chuyển động được dựng bằng mã trên bộ xương của Mira, vì GLB xuất từ Tripo không chứa các clip keyframe đã xem trong preview.</p>
+<figure><img alt="Xưởng chuyển động với bộ xương Mira" aria-label="Phóng to hình: Xưởng chuyển động với bộ xương Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-repo/studio-skeleton.jpg" tabindex="0"/><figcaption>Hình 8.4 — Xưởng chuyển động trong repo thật: bật hiển thị xương để thấy tay, hông, gối và bàn chân khi đổi tư thế. Xưởng giúp kiểm động tác riêng; sau đó vẫn phải chơi game để kiểm va chạm và tốc độ di chuyển.</figcaption></figure>
+
+<h2>Trước khi sang chương 9</h2>
+<ul>
+<li>[ ] Tôi mở được bản gốc trước khi sửa.</li>
+<li>[ ] Tôi biết một yêu cầu gắn với nhóm file nào.</li>
+<li>[ ] Tôi thử lại vòng chơi sau khi đổi asset hoặc luật.</li>
+</ul>
+<p>Chương 9 giúp chọn lúc nào làm thủ công trong Studio, lúc nào để agent gọi công cụ ngoài.</p>
+</div><div class="chapter-end"><span>Hết chương 8</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-09" data-title="Chương 9 — Dùng công cụ đúng lúc trong dự án Mira"><div class="chapter-kicker">CHƯƠNG 09 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 9 — Dùng công cụ đúng lúc trong dự án Mira</h1>
+<p>Game Mira cho thấy không phải việc gì cũng cần thêm plugin hoặc MCP. Bộ ảnh được duyệt bằng mắt, model được xem trong Tripo Studio, rồi file GLB được đưa cho agent làm game. Repo game còn có <strong>Xưởng chuyển động</strong> riêng để kiểm xương và dáng đi sau khi nhập GLB. Hai nơi xem thử này có mục đích khác nhau: Tripo chuẩn bị asset, Xưởng của game kiểm asset hoạt động trong mã. Chương này giúp bạn chọn công cụ theo <strong>việc đang mắc</strong>, không theo danh sách công cụ có thể cài.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> phân biệt ba lớp hỗ trợ, quyết định lúc dùng Studio và lúc tự động hóa.</p>
+<figure><img alt="Luồng công cụ hỗ trợ dự án 3D" aria-label="Phóng to hình: Luồng công cụ hỗ trợ dự án 3D" decoding="async" loading="lazy" role="button" src="ebook-assets/diagrams/ch10-cong-cu.png" tabindex="0"/><figcaption>Hình 9.1 — Skill hướng dẫn cách làm; plugin có thể đóng gói kỹ năng/công cụ; MCP nối agent với dịch vụ ngoài. Người dùng vẫn cần duyệt ảnh và kết quả 3D.</figcaption></figure>
+
+<h2>9.1. Ba từ cần nhớ</h2>
+<table>
+<thead>
+<tr>
+<th>Tên</th>
+<th>Hiểu bằng một câu</th>
+<th>Ví dụ Mira</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Skill</strong></td>
+<td>Bộ hướng dẫn để agent làm theo một quy trình</td>
+<td>Brainstorm trước khi thay cả hệ chiến đấu</td>
+</tr>
+<tr>
+<td><strong>Plugin</strong></td>
+<td>Gói mở rộng chức năng</td>
+<td>Gói có công cụ làm việc với Tripo</td>
+</tr>
+<tr>
+<td><strong>MCP</strong></td>
+<td>Cầu nối để agent gọi một công cụ ngoài</td>
+<td>Agent gửi ảnh tới dịch vụ tạo 3D</td>
+</tr>
+</tbody>
+</table>
+<p>Ba thứ này <strong>không thay thế ảnh tham chiếu tốt</strong>. Một MCP nạp nhầm góc ảnh vẫn có thể cho model sai. Vì thế ở case Mira, việc chuẩn bị bốn góc và tự xoay preview trong Tripo là một phần của chất lượng, không phải thao tác thừa.</p>
+<h2>9.2. Chọn Studio hay tự động hóa?</h2>
+<p>Khi thử <strong>một nhân vật</strong>, hãy ưu tiên cách bạn nhìn và kiểm được: nạp ảnh vào Tripo Studio, xem trước/sau/trái/phải, kiểm bốt, rồi xuất GLB. Khi cần tạo <strong>nhiều asset giống quy trình nhau</strong>, MCP/API có thể tiết kiệm thao tác, nhưng phải có tiêu chí tự động dừng khi đầu vào hoặc preview chưa đạt.</p>
+<table>
+<thead>
+<tr>
+<th>Nếu bạn đang…</th>
+<th>Cách hợp lý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chọn bản Mira đẹp nhất, kiểm bốt và tóc</td>
+<td>Tripo Studio, duyệt thủ công</td>
+</tr>
+<tr>
+<td>Tạo nhiều biến thể slime theo cùng quy tắc</td>
+<td>Cân nhắc MCP/API sau khi chốt mẫu</td>
+</tr>
+<tr>
+<td>Tìm vì sao chân không gập</td>
+<td>Kiểm GLB và rig, không gọi tạo ảnh mới</td>
+</tr>
+<tr>
+<td>Lên kế hoạch đổi toàn bộ hệ quái</td>
+<td>Brainstorm, chọn một quái làm mẫu trước</td>
+</tr>
+</tbody>
+</table>
+<h2>9.3. Prompt cho việc có thể tốn credit</h2>
+<blockquote>
+<p>Tôi muốn tạo một quái mới cho game Mira bằng Tripo. Trước khi dùng lượt tạo trả phí, hãy đề xuất ảnh tham chiếu, số góc cần có và dáng phù hợp với camera game. Báo chi phí hiển thị ở thời điểm thao tác, định dạng GLB cần xuất và cách kiểm mặt, tay, chân khi xem trong game. Làm một bản thử, mở preview cho tôi xem rồi dừng; không tự lặp thêm lượt tạo khi chưa có nhận xét.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> prompt phải tạo ra kế hoạch và tiêu chí kiểm trước khi tiêu credit. <strong>Nếu agent chỉ nói “tôi sẽ làm đẹp hơn”:</strong> yêu cầu nêu rõ chi tiết nào cần sửa và ảnh nào dùng để đối chiếu.</p>
+<h2>Trước khi sang chương 10</h2>
+<ul>
+<li>[ ] Tôi chọn công cụ theo việc cần làm, không cài mọi thứ trước.</li>
+<li>[ ] Tôi duyệt đầu vào và preview dù thao tác bằng MCP.</li>
+<li>[ ] Tôi biết chi phí và điểm dừng trước một lần tạo asset.</li>
+</ul>
+<p>Chương 10 chọn một lộ trình nâng cấp từ bản Mira đang chơi được đến phiên bản có hành động và hình ảnh nhất quán hơn.</p>
+</div><div class="chapter-end"><span>Hết chương 9</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-10" data-title="Chương 10 — Kế hoạch nâng cấp và chia sẻ game Mira"><div class="chapter-kicker">CHƯƠNG 10 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 10 — Kế hoạch nâng cấp và chia sẻ game Mira</h1>
+<p>Bạn đã có một game thực sự chơi được và một nhân vật đã cử động bằng xương. Đây là <strong>chương cuối của dự án Mira</strong>. Ta nhìn lại vòng chơi đã có, chọn một cải tiến nhỏ và kiểm cả desktop lẫn điện thoại trước khi chuyển sang dự án khác.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> chọn thứ tự nâng cấp, biến một ý tưởng truyện thành tính năng nhỏ có thể thử, kiểm từng mốc và nói trung thực điều đã có, điều mới là concept.</p>
+<figure><img alt="Mira trong màn chơi đã hoàn thành" aria-label="Phóng to hình: Mira trong màn chơi đã hoàn thành" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-14-victory.png" tabindex="0"/><figcaption>Hình 10.1 — Màn chiến thắng của game Mira. Đây là mốc kiểm cuối: mỗi lần nâng cấp quái, chiêu hoặc bối cảnh phải giữ được vòng chơi tới điểm kết thúc.</figcaption></figure>
+
+<h2>10.1. Năm mốc cho phiên bản kế tiếp</h2>
+<table>
+<thead>
+<tr>
+<th>Mốc</th>
+<th>Việc làm</th>
+<th>Đầu ra cần duyệt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Nhân vật</td>
+<td>Rig và bộ chuyển động đã có; tiếp tục sửa dáng chưa đạt</td>
+<td>Xem Xưởng chuyển động ở nhiều góc, thử bốt trong game</td>
+</tr>
+<tr>
+<td>2. Quái đầu tiên</td>
+<td>Nâng cấp Slime Bóng Tối</td>
+<td>Hình mới đọc rõ, luật cũ vẫn đúng</td>
+</tr>
+<tr>
+<td>3. Một chiêu</td>
+<td>Đồng bộ tư thế, tia sáng và sát thương</td>
+<td>Bấm → thấy ra chiêu → quái phản hồi đúng</td>
+</tr>
+<tr>
+<td>4. Bối cảnh</td>
+<td>Chỉnh đường đi và ánh sáng nơi dễ lạc</td>
+<td>Người mới tìm được tế đàn, quái và cổng</td>
+</tr>
+<tr>
+<td>5. Mobile</td>
+<td>Thử máy thật, giảm phần làm chậm</td>
+<td>Đi/chém/né được bằng ngón tay, hình đủ rõ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Không cần làm cả năm mốc trong một prompt.</strong> Chọn một mốc đang cần nhất, duyệt xong mới sang mốc khác. Mỗi mốc có một ảnh hoặc video “trước”, một bản chạy “sau” và hai câu nhận xét.</p>
+<h2>10.2. Ba ý tưởng phát triển từ cùng một câu chuyện</h2>
+<p>Ở Chương 3, ta phác thảo tuyến truyện từ Linh Tinh đến cổng trùm. Muốn người chơi <strong>cảm thấy</strong> câu chuyện đó, không nhất thiết thêm đoạn văn dài. Có thể thay bằng ba tín hiệu trong lúc chơi. Mỗi tín hiệu giải quyết một việc cụ thể:</p>
+<figure><img alt="Ba concept mở rộng trải nghiệm game Mira" aria-label="Phóng to hình: Ba concept mở rộng trải nghiệm game Mira" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/mira-feature-concepts-v1.png" tabindex="0"/><figcaption>Hình 10.2 — Ba concept cho phiên bản sau: dấu sáng dẫn tới mục tiêu, vòng cảnh báo đòn trùm dễ đọc hơn và cổng sáng lên sau chiến thắng. Đây không phải ba tính năng đã hoàn tất. Bản game hiện có cảnh báo đòn trùm; ảnh giữa gợi cách làm tín hiệu ấy rõ hơn.</figcaption></figure>
+
+<table>
+<thead>
+<tr>
+<th>Gợi ý</th>
+<th>Người chơi hiểu thêm điều gì?</th>
+<th>Bản thử nhỏ nhất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dấu sáng dẫn đường</td>
+<td>Sau khi nhặt Linh Tinh, cần đi về phía cổng</td>
+<td>Chỉ hiện một dải sáng ngắn khi người chơi chưa tìm được đường</td>
+</tr>
+<tr>
+<td>Cảnh báo trùm rõ hơn</td>
+<td>Đòn mạnh sắp rơi ở đâu và còn thời gian để né</td>
+<td>So vòng cảnh báo cũ/mới ở cùng camera, giữ sát thương cũ</td>
+</tr>
+<tr>
+<td>Cổng đổi trạng thái</td>
+<td>Chiến thắng đã mở đường tiếp</td>
+<td>Sau khi trùm bị hạ, rune trên cổng sáng và hiện lối đi; chưa cần màn mới</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prompt cho một nhánh, không làm cả ba:</strong></p>
+<blockquote>
+<p>Game Mira hiện đã có tế đàn, các đợt quái và trùm. Hãy nâng cấp <strong>riêng tín hiệu dẫn đường sau khi nhặt Linh Tinh</strong>: đề xuất một dấu sáng ngắn trên đường đi, không biến cả màn thành đường kẻ phát quang. Trước khi sửa, cho tôi xem ảnh trạng thái hiện tại và vị trí dự kiến. Giữ nguyên quái, chiêu, sát thương và hiệu năng mobile. Làm một bản thử, mở localhost, thử với người chưa biết bản đồ và ghi xem họ tìm được hướng đi hay không.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> cho một người mới chơi từ lúc nhặt vật. Nếu họ vẫn không biết hướng đi, kiểm vị trí và thời điểm xuất hiện của dấu sáng. Nếu người chơi đã biết đường mà vẫn bị hiệu ứng bám theo liên tục, giảm hoặc tắt nó sau khi đã học được đường.</p>
+<h2>10.3. Khi nào thêm bối cảnh và hiệu ứng?</h2>
+<p>Bối cảnh hiện có đảo bay, cỏ, cổng và tế đàn. Nếu người chơi không biết đi đâu, việc đầu tiên là <strong>làm rõ đường và mục tiêu</strong>, không thêm nhiều cây. Nếu quái bị chìm vào nền, chỉnh tương phản hoặc kích thước trước khi tăng độ phức tạp model. Nếu phép làm màn hình trắng, giảm ánh sáng ở đúng khoảnh khắc.</p>
+<figure><img alt="Tế đàn và hiệu ứng ánh sáng trong game" aria-label="Phóng to hình: Tế đàn và hiệu ứng ánh sáng trong game" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-case/d-07-nova.png" tabindex="0"/><figcaption>Hình 10.3 — Hiệu ứng Vòng Tinh Tú làm cảnh sáng mạnh. Khi duyệt, kiểm Mira, quái và tín hiệu nguy hiểm có còn nhìn được trong lúc phép xuất hiện.</figcaption></figure>
+
+<p><strong>Prompt nâng bối cảnh theo mục tiêu chơi:</strong></p>
+<blockquote>
+<p>Tôi muốn người mới dễ nhận ra tế đàn và đường đi trong game Mira. Hãy mở bản đang chạy, chụp một ảnh lúc bắt đầu và một ảnh lúc có quái. Chỉ đề xuất tối đa ba thay đổi về ánh sáng, màu hoặc vị trí đạo cụ để hướng mắt người chơi. Giữ lối chơi và hiệu năng mobile. Làm một bản thử, cho tôi so ảnh trước/sau cùng góc camera.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> nhờ một người chưa chơi tìm Linh Tinh mà không được chỉ tay. <strong>Nếu họ vẫn lạc:</strong> sửa tín hiệu dẫn đường, không thêm lời giải thích dài lên màn hình.</p>
+<h2>10.4. Đưa dự án cho người khác xem</h2>
+<p>Trước khi chia sẻ, thử toàn bộ vòng chơi: mở màn → di chuyển → nhặt Linh Tinh → gặp các loại quái → đánh trùm → thắng hoặc thua → chơi lại. Trên desktop, thử bàn phím và chuột. Trên điện thoại thật, thử cần ảo và nút chiêu. Ảnh chụp mobile trong sách cho thấy bố cục ở kích thước nhỏ; nó chưa chứng minh tốc độ trên mọi điện thoại.</p>
+<figure><img alt="Mira trên bố cục điện thoại dọc" aria-label="Phóng to hình: Mira trên bố cục điện thoại dọc" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-repo/game-mobile.jpg" tabindex="0"/><figcaption>Hình 10.4 — Ảnh điện thoại từ repo mới nhất: cần ảo và các nút chiêu được đặt quanh vùng chơi. Ảnh kiểm bố cục; cần thử trên máy thật để đánh giá thao tác chạm và tốc độ.</figcaption></figure>
+
+<p>Khi giới thiệu dự án, ghi rõ: <strong>game hiện chạy được, Mira đã có 65 xương và chuyển động dựng bằng mã trên bộ xương</strong>. Những GIF ở Tripo là preview; GLB xuất ra chưa chứa clip hoạt ảnh tương ứng. Ảnh concept quái và các tính năng tương lai vẫn là định hướng, chưa phải asset đang chơi. Cách nói đó giúp người đọc thấy đúng quá trình phát triển.</p>
+<figure><img alt="Trùm Hắc Nguyệt Thú trong trận chiến thật" aria-label="Phóng to hình: Trùm Hắc Nguyệt Thú trong trận chiến thật" decoding="async" loading="lazy" role="button" src="ebook-assets/mira-repo/game-boss.jpg" tabindex="0"/><figcaption>Hình 10.5 — Trận trùm trong repo thật. Đây là tình huống kiểm cuối cho cảnh báo đòn đánh, hiệu ứng, điều khiển và khả năng quan sát nhân vật khi màn hình nhiều chi tiết.</figcaption></figure>
+
+<p><strong>Prompt kiểm cuối:</strong></p>
+<blockquote>
+<p>Hãy chạy bản game Mira hiện tại và kiểm vòng chơi từ màn mở đầu tới thắng hoặc thua. Ghi rõ phần đã thử trên desktop, phần đã thử ở bố cục mobile trong trình duyệt và phần chỉ có thể xác nhận bằng điện thoại thật. Chụp ảnh ba mốc: bắt đầu, chiến đấu, kết thúc. Báo lỗi chặn việc chơi và sửa đúng lỗi đó; chưa mở thêm tính năng mới.</p>
+</blockquote>
+<h2>Kết thúc case Mira</h2>
+<ul>
+<li>[ ] Tôi có bản game đang chơi được và biết mở trên localhost.</li>
+<li>[ ] Tôi phân biệt ảnh concept, preview Tripo và ảnh game thật.</li>
+<li>[ ] Tôi biết dùng Xưởng chuyển động để kiểm Mira đứng, đi, chạy và ra chiêu bằng khớp.</li>
+<li>[ ] Tôi có thứ tự nâng cấp nhân vật, quái, phép, bối cảnh và mobile.</li>
+<li>[ ] Tôi kiểm lại vòng chơi sau mỗi lần sửa.</li>
+</ul>
+<p>Một prompt có thể tạo bản đầu rất nhanh. Khả năng làm chủ thể hiện ở các vòng tiếp theo: chọn đúng thành phần, đưa đúng asset, thử đúng tình huống và giữ phần đã đạt.</p>
+<p>Chương 11 bắt đầu <strong>một dự án mới</strong>: landing page chủ đề vũ trụ. Ảnh và hệ thống game Mira dừng tại đây; mục tiêu của dự án kế tiếp là kể chuyện bằng hình chuyển động và dẫn người xem tới một hành động rõ ràng.</p>
+</div><div class="chapter-end"><span>Hết chương 10</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="chap-11" data-title="Chương 11 — Dự án mới: landing page khám phá hành tinh"><div class="chapter-kicker">CHƯƠNG 11 <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Chương 11 — Dự án mới: landing page khám phá hành tinh</h1>
+<p><strong>Atlas Hành Tinh</strong> là trang giới thiệu một chương trình học về vũ trụ. Người xem mở trang, chọn Trái Đất, Sao Hỏa hoặc Sao Kim, đọc vài dòng giới thiệu rồi bấm đăng ký. Đây là một dự án landing page độc lập, dùng hình ảnh chuyển động để kể chuyện.</p>
+<p><strong>Sau chương này, bạn làm được:</strong> chọn giữa video tạo cảm giác 3D và model GLB tương tác; chuẩn bị asset cho một hero; viết prompt đủ rõ; kiểm ba cảnh, CTA và điện thoại.</p>
+<figure><img alt="Mockup landing page Atlas Hành Tinh trên máy tính và điện thoại" aria-label="Phóng to hình: Mockup landing page Atlas Hành Tinh trên máy tính và điện thoại" decoding="async" loading="lazy" role="button" src="ebook-assets/atlas-landing/atlas-mockup.svg" tabindex="0"/><figcaption>Hình 11.1 — Mockup riêng của dự án Atlas Hành Tinh: hình hành tinh làm nền, còn chữ, nút và thanh chọn cảnh là thành phần HTML. Đây là bản định hướng giao diện, chưa phải trang đã lập trình.</figcaption></figure>
+
+<h2>11.1. Người xem cần xem hay cần xoay?</h2>
+<p>Nếu chỉ cần <strong>cảm nhận không khí vũ trụ</strong>, một video ngắn và ảnh chờ là đủ cho phần mở đầu. Nếu cần <strong>kéo xoay hành tinh</strong> để xem mọi góc, phải dùng model 3D như GLB và thư viện Three.js. Hai cách có thể cùng xuất hiện trên một trang, nhưng hãy làm xong phần mở đầu trước.</p>
+<table>
+<thead>
+<tr>
+<th>Mục tiêu</th>
+<th>Dùng gì?</th>
+<th>Cách kiểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hành tinh chuyển động điện ảnh sau tiêu đề</td>
+<td>MP4 im lặng + ảnh poster</td>
+<td>Chữ đọc được ở cả khung sáng và tối</td>
+</tr>
+<tr>
+<td>Bấm tên để đổi Trái Đất, Sao Hỏa, Sao Kim</td>
+<td>Ba bộ video/ảnh + nội dung tương ứng</td>
+<td>Hình, tiêu đề và CTA đổi cùng nhau</td>
+</tr>
+<tr>
+<td>Kéo chuột để xoay hành tinh tự do</td>
+<td>GLB + Three.js</td>
+<td>Xoay mượt trên máy tính và điện thoại</td>
+</tr>
+</tbody>
+</table>
+<p>Ảnh tham khảo dưới đây cho thấy hành tinh lớn ở chân trang, tiêu đề ở vùng yên và nút chính nằm trên đường nhìn. Ta chỉ học <strong>bố cục và thứ bậc thông tin</strong>, rồi dùng tên, hình và nội dung riêng cho Atlas Hành Tinh.</p>
+<figure><img alt="Ảnh tham khảo hero SpaceEdu do tác giả cung cấp" aria-label="Phóng to hình: Ảnh tham khảo hero SpaceEdu do tác giả cung cấp" decoding="async" loading="lazy" role="button" src="ebook-assets/spaceedu-reference.png" tabindex="0"/><figcaption>Hình 11.2 — Ảnh tham khảo bố cục: vùng chữ, vị trí hành tinh và nút hành động. Atlas Hành Tinh là bài tập khác với thương hiệu và nội dung riêng.</figcaption></figure>
+
+<h2>11.2. Chuẩn bị một bộ asset cho mỗi cảnh</h2>
+<p>Một cảnh gồm <strong>video, poster, tiêu đề, mô tả, nút và đích nút</strong>. Poster là ảnh tĩnh cùng cảnh, xuất hiện lúc video chưa tải hoặc khi người đọc chọn giảm chuyển động. Chữ và nút đặt bằng HTML để vẫn đọc được trên điện thoại.</p>
+<figure><img alt="Ba cảnh của dự án Atlas Hành Tinh" aria-label="Phóng to hình: Ba cảnh của dự án Atlas Hành Tinh" decoding="async" loading="lazy" role="button" src="ebook-assets/atlas-landing/atlas-scenes.svg" tabindex="0"/><figcaption>Hình 11.3 — Ba cảnh concept: Trái Đất, Sao Hỏa và Sao Kim. Mỗi cảnh có màu, tiêu đề và thông điệp riêng; đây là định hướng asset, chưa phải ba video đã xuất.</figcaption></figure>
+
+<table>
+<thead>
+<tr>
+<th>Cảnh</th>
+<th>Video/ảnh cần chuẩn bị</th>
+<th>Một câu người xem đọc</th>
+<th>Hành động chính</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trái Đất</td>
+<td>Bầu khí quyển xanh, hành tinh ở nửa dưới</td>
+<td>“Ngôi nhà của chúng ta nhìn từ không gian”</td>
+<td>Xem nội dung khóa học</td>
+</tr>
+<tr>
+<td>Sao Hỏa</td>
+<td>Bề mặt đỏ, chuyển động camera chậm</td>
+<td>“Một thế giới đặt ra câu hỏi về sự sống”</td>
+<td>Xem bài học mẫu</td>
+</tr>
+<tr>
+<td>Sao Kim</td>
+<td>Sắc vàng ấm, mây dày</td>
+<td>“Hành tinh gần Trái Đất nhưng rất khác”</td>
+<td>Xem lịch học</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prompt tạo một video nền:</strong></p>
+<blockquote>
+<p>Dựa trên ảnh hành tinh tôi gửi, tạo video ngắn, im lặng để làm nền hero của trang Atlas Hành Tinh. Giữ hành tinh ở nửa dưới khung hình; chừa khoảng tối, ít chi tiết ở giữa phía trên để đặt chữ HTML. Camera di chuyển rất chậm, không thêm chữ, logo, nút hoặc âm thanh. Đầu và cuối gần nhau để lặp mượt. Xuất MP4 và một ảnh poster cùng cảnh.</p>
+</blockquote>
+<p><strong>Cách thử:</strong> dừng video ở khung sáng nhất và tối nhất rồi đặt tạm tiêu đề lên. Nếu chữ chìm vào mây hoặc hành tinh bị cắt trên điện thoại, sửa bố cục asset trước khi thêm hiệu ứng.</p>
+<h2>11.3. Viết mega prompt như một bản giao việc</h2>
+<p>“Mega” nghĩa là đủ thông tin để agent làm đúng, không có nghĩa phải dài vô hạn. Hãy đưa cho agent tám phần: <strong>mục tiêu, asset, nội dung, bố cục, tương tác, chuyển động, thiết bị và cách kiểm</strong>. Bắt đầu bằng <strong>một cảnh Trái Đất</strong>, chỉ mở rộng sau khi hero đạt.</p>
+<blockquote>
+<p>Hãy làm hero cho landing page Atlas Hành Tinh. Người xem là người mới tìm hiểu vũ trụ; hành động chính là xem chương trình học. Tôi gửi <code>earth.mp4</code> và <code>earth-poster.jpg</code>. Video chạy im lặng, lặp nhẹ; poster hiện khi video chưa sẵn sàng hoặc người dùng chọn giảm chuyển động. Tiêu đề, mô tả và nút là HTML riêng, không nằm trong video. Đặt chữ ở vùng yên phía trên, hành tinh ở nửa dưới. Trên điện thoại, chữ và nút dễ đọc, hành tinh không bị cắt mất phần chính. Nút “Xem chương trình” đi tới section nội dung thật. Mở bản xem thử, kiểm video, poster, nút và màn hình hẹp trước khi báo hoàn thành.</p>
+</blockquote>
+<p>Khi hero một cảnh chạy tốt, giao thêm bảng ba cảnh ở mục 11.2 và yêu cầu: “Bấm tên cảnh thì <strong>video, poster, tiêu đề, mô tả và đích CTA đổi cùng nhau</strong>. Thử Trái Đất → Sao Hỏa → Sao Kim → Trái Đất, kể cả lúc video tải chậm.”</p>
+<figure><img alt="Quy trình làm landing page hành tinh" aria-label="Phóng to hình: Quy trình làm landing page hành tinh" decoding="async" loading="lazy" role="button" src="ebook-assets/atlas-landing/atlas-workflow.svg" tabindex="0"/><figcaption>Hình 11.4 — Quy trình bài tập: duyệt ảnh từng cảnh → tạo MP4 và poster → viết nội dung HTML → ghép hero → thử ba cảnh và màn hình nhỏ. Mỗi bước có đầu ra để so trước khi làm bước tiếp.</figcaption></figure>
+
+<h2>11.4. Kiểm kết quả bằng năm thao tác</h2>
+<ol>
+<li>Tải lại trang: poster hiện đúng trước khi video sẵn sàng.</li>
+<li>Bấm đủ ba cảnh: hình, chữ và nút luôn thuộc cùng một hành tinh.</li>
+<li>Bấm CTA của từng cảnh: đích dẫn tới nội dung thật.</li>
+<li>Thu hẹp màn hình: chữ không đè hành tinh, nút dễ chạm.</li>
+<li>Bật chế độ giảm chuyển động: poster và nội dung vẫn dùng được.</li>
+</ol>
+<p>Nếu người xem cần <strong>xoay hành tinh bằng tay</strong>, đó là bài nâng cấp GLB tương tác. Ở bản FREE, mục tiêu là hiểu bộ asset và làm một landing page chuyển cảnh rõ ràng, chạy ổn trên cả máy tính và điện thoại.</p>
+<h2>Kết thúc bản FREE</h2>
+<p>Bạn đã theo một dự án game từ ảnh nhân vật tới bản chơi có xương, rồi áp dụng cùng cách giao việc và kiểm kết quả cho một landing page độc lập. Phần nâng cấp dự kiến sẽ đi sâu vào Blender, chuyển động nhân vật, game nhiều màn, lưu tiến độ, bản chơi offline trên điện thoại, game giáo dục và landing page GLB tương tác. Các mục đó đang chuẩn bị nội dung và chưa mở trong bản này.</p>
+</div><div class="chapter-end"><span>Hết chương 11</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="appendix-1" data-title="Phụ lục A — Từ điển đủ dùng cho Vibe Code 3D"><div class="chapter-kicker">PHỤ LỤC <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Phụ lục A — Từ điển đủ dùng cho Vibe Code 3D</h1>
+<p>Tra từ khi cần; bạn không phải học thuộc trước khi bắt đầu. Ví dụ dưới đây gắn với các bài trong sách.</p>
+<table>
+<thead>
+<tr>
+<th>Thuật ngữ</th>
+<th>Hiểu bằng tiếng thường</th>
+<th>Khi bạn cần nhắc đến</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vibe coding</td>
+<td>Diễn đạt mục tiêu, điều kiện và phản hồi bằng ngôn ngữ tự nhiên để agent viết/sửa mã</td>
+<td>Giao một mốc dự án cho Codex hoặc Claude</td>
+</tr>
+<tr>
+<td>Agent lập trình</td>
+<td>Trợ lý làm việc với file, có thể chạy và kiểm dự án trong phạm vi quyền được cấp</td>
+<td>Muốn tạo trang thật thay vì chỉ xin ý tưởng</td>
+</tr>
+<tr>
+<td>GPT-6 Astra / Claude Fable 5.1</td>
+<td>Tên model tác giả chọn cho ví dụ; khả năng và nhãn có thể đổi</td>
+<td>Chọn model đang được tài khoản hỗ trợ; không xem tên model là bảo đảm chất lượng</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>Agent lập trình trong hệ sinh thái OpenAI</td>
+<td>Nhờ đọc repo, tạo/sửa web 3D, kiểm file</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>Đơn vị AI xử lý khi đọc và sinh nội dung</td>
+<td>Cần giữ ngữ cảnh gọn, đưa log/ảnh liên quan</td>
+</tr>
+<tr>
+<td>Brief</td>
+<td>Tờ giao việc nêu mục tiêu, người xem, asset, giới hạn và cách kiểm</td>
+<td>Trước khi viết prompt dự án</td>
+</tr>
+<tr>
+<td>Asset</td>
+<td>File dùng trong dự án: ảnh, video, model, âm thanh</td>
+<td>Kiểm đầu vào và quyền sử dụng</td>
+</tr>
+<tr>
+<td>Scene</td>
+<td>Không gian chứa các đối tượng 3D</td>
+<td>Khi model đã tải nhưng chưa thấy trong cảnh</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>Góc mắt người xem nhìn vào cảnh</td>
+<td>Khi đối tượng bị cắt hoặc quá nhỏ</td>
+</tr>
+<tr>
+<td>Mesh / geometry</td>
+<td>Hình khối 3D và cấu trúc hình dạng</td>
+<td>Khi giày, bánh xe hoặc khuôn mặt bị méo</td>
+</tr>
+<tr>
+<td>Material / texture</td>
+<td>Tính chất bề mặt và ảnh vẽ chi tiết lên bề mặt</td>
+<td>Khi màu áo hoặc sơn xe không đúng</td>
+</tr>
+<tr>
+<td>Light</td>
+<td>Nguồn sáng trong cảnh</td>
+<td>Khi model tối dù file đã tải</td>
+</tr>
+<tr>
+<td>HDR / environment map</td>
+<td>Hình môi trường giúp tạo ánh sáng/phản chiếu xung quanh</td>
+<td>Khi vật liệu kim loại trông phẳng hoặc đen</td>
+</tr>
+<tr>
+<td>Renderer</td>
+<td>Bộ phận biến scene và camera thành hình trong trình duyệt</td>
+<td>Khi trang có mã nhưng không hiện cảnh</td>
+</tr>
+<tr>
+<td>Three.js</td>
+<td>Thư viện giúp dựng và hiển thị 3D trên web</td>
+<td>Khi cần GLB tương tác trong trình duyệt</td>
+</tr>
+<tr>
+<td>WebGL</td>
+<td>Nền tảng đồ họa trình duyệt mà thư viện 3D có thể dùng</td>
+<td>Không phải app riêng cần cài cho người mới</td>
+</tr>
+<tr>
+<td>glTF / GLB</td>
+<td>Định dạng gói/trao đổi mô hình 3D; GLB thường là một file</td>
+<td>Tải model từ Tripo để đưa vào web</td>
+</tr>
+<tr>
+<td>Node</td>
+<td>Một thành phần có tên/vị trí trong cấu trúc model</td>
+<td>Kiểm bánh xe có tách riêng hay không</td>
+</tr>
+<tr>
+<td>Rig / skeleton</td>
+<td>Bộ xương gồm các khớp để xoay tay, chân, thân</td>
+<td>Khi muốn Mira gập gối hoặc vung tay</td>
+</tr>
+<tr>
+<td>Skin weight</td>
+<td>Mức độ một vùng bề mặt đi theo từng xương</td>
+<td>Khi đầu gối gập mà quần, áo hoặc bốt bị méo</td>
+</tr>
+<tr>
+<td>Pose</td>
+<td>Một tư thế của các khớp tại một thời điểm</td>
+<td>Khi kiểm một khoảnh khắc đứng, bước hoặc đánh</td>
+</tr>
+<tr>
+<td>Animation / clip</td>
+<td>Chuỗi pose theo thời gian thành một động tác</td>
+<td>Khi muốn phát idle, walk hoặc run từ GLB</td>
+</tr>
+<tr>
+<td>In-place</td>
+<td>Clip bước/chạy tại chỗ, không tự kéo nhân vật đi xa</td>
+<td>Khi game đã điều khiển vị trí nhân vật</td>
+</tr>
+<tr>
+<td>Root motion</td>
+<td>Chuyển động toàn thân được ghi ngay trong clip</td>
+<td>Khi nhân vật tự trôi dù người chơi đã dừng</td>
+</tr>
+<tr>
+<td>AnimationMixer</td>
+<td>Công cụ trong Three.js phát và chuyển giữa các clip</td>
+<td>Khi agent nối clip đứng, đi, chạy vào game</td>
+</tr>
+<tr>
+<td>Shader</td>
+<td>Công thức tính màu/bề mặt khi vẽ</td>
+<td>Chỉ cần biết khác texture và ánh sáng ở mức nhập môn</td>
+</tr>
+<tr>
+<td>FPS</td>
+<td>Số khung hình hiển thị mỗi giây</td>
+<td>Khi xoay hoặc di chuyển bị giật</td>
+</tr>
+<tr>
+<td>Repo</td>
+<td>Kho file dự án, thường có lịch sử thay đổi</td>
+<td>Dùng một mẫu có sẵn và phát triển tiếp</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>Quy trình/hướng dẫn tái sử dụng cho agent</td>
+<td>Brainstorm hoặc kiểm chất lượng theo bước</td>
+</tr>
+<tr>
+<td>Plugin</td>
+<td>Gói khả năng/công cụ bổ sung</td>
+<td>Khi cần chức năng chuyên biệt</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>Cách kết nối agent với công cụ/dữ liệu ngoài</td>
+<td>Khi muốn agent gọi Tripo hoặc dịch vụ khác trong phạm vi được phép</td>
+</tr>
+<tr>
+<td>Poster</td>
+<td>Ảnh tĩnh hiển thị khi video chưa phát/không phát</td>
+<td>Hero motion phải vẫn đọc và bấm được</td>
+</tr>
+<tr>
+<td>Fallback</td>
+<td>Phương án dự phòng khi thành phần chính không chạy</td>
+<td>Dùng poster nếu MP4 không phát</td>
+</tr>
+<tr>
+<td>Reduced motion</td>
+<td>Tùy chọn giảm chuyển động của người dùng</td>
+<td>Chọn ảnh tĩnh hoặc ít chuyển động hơn</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>Nơi trình duyệt báo lỗi kỹ thuật</td>
+<td>Gửi dòng lỗi liên quan cho agent</td>
+</tr>
+<tr>
+<td>Preview / localhost</td>
+<td>Bản xem thử, thường chỉ chạy trên máy đang làm</td>
+<td>Kiểm trước khi chia sẻ công khai</td>
+</tr>
+<tr>
+<td>Deploy / phát hành</td>
+<td>Đưa dự án lên nơi người khác mở bằng link</td>
+<td>Kiểm đường dẫn asset và chức năng từ máy khác</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ngoài phạm vi bản nhập môn:</strong> glTFast/Unity WebGL, nền tảng Toy, đo thời gian operator và thao tác Blender chuyên sâu. Chúng liên quan đến quy trình khác, chưa cần để hoàn thành một trang Three.js hoặc landing page motion. Nếu file tác giả gọi là “GLX”, hãy kiểm tên/định dạng thực tế; ví dụ trong sách dùng <strong>GLB/glTF</strong>.</p>
+</div><div class="chapter-end"><span>Hết phụ lục a</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section>
+<section class="book-section" id="appendix-2" data-title="Phụ lục B — Bộ mẫu thực hành nhanh"><div class="chapter-kicker">PHỤ LỤC <span>·</span> COACHIO ACADEMY</div><div class="prose"><h1>Phụ lục B — Bộ mẫu thực hành nhanh</h1>
+<p>Các mẫu này gom những câu lệnh dùng lại nhiều lần. Thay nội dung trong <code>[ngoặc vuông]</code>; bỏ câu nào không đúng dự án. Sau mỗi prompt, hãy <strong>mở bản thật và tự thử</strong>, không chỉ đọc câu trả lời của agent.</p>
+<h2>B1. Phiếu brief một trang</h2>
+<pre><code class="language-text">Tên dự án: [tên]
+Người xem: [ai]
+Mục tiêu của người xem: [một hành động]
+Asset đã có: [tên file + định dạng + tình trạng đã duyệt]
+Bắt buộc: [tối đa ba điều]
+Để sau: [tối đa ba điều]
+Thiết bị cần thử: [desktop/điện thoại]
+Đạt khi: [ba việc quan sát hoặc thao tác được]
+</code></pre>
+<h2>B2. Tạo dự án nhỏ</h2>
+<blockquote>
+<p>Tôi mới bắt đầu và có brief này: <code>[dán brief]</code>. Hãy chọn bản đơn giản nhất có thể chạy trong trình duyệt. Trước khi sửa file, chia thành tối đa năm mốc và nói rõ tôi phải nhìn thấy gì sau mỗi mốc. Chỉ làm mốc đầu sau khi tôi duyệt. Nếu thiếu asset, nêu điều thiếu; đừng dùng ảnh giả rồi nói là đã hoàn thành.</p>
+</blockquote>
+<p><strong>Thử:</strong> mốc đầu mở được; thông điệp và thao tác chính nhìn thấy. <strong>Lỗi:</strong> gửi ảnh hoặc log theo B4.</p>
+<h2>B3. Kiểm GLB trước khi lập trình</h2>
+<blockquote>
+<p>Hãy đọc <code>[file].glb</code> và báo: kích thước, mesh/node, vật liệu/texture, skin/rig và clip animation. Với yêu cầu <code>[xe chạy/bánh quay/nhân vật đi]</code>, phân biệt phần làm được ngay với phần cần sửa/xuất lại asset. Chưa thay mô hình hoặc viết hiệu ứng cho đến khi báo cáo xong.</p>
+</blockquote>
+<p><strong>Thử:</strong> báo cáo có tên node/clip hoặc ghi rõ không có. <strong>Lỗi:</strong> nếu kết luận quá chung, yêu cầu bằng chứng từ cấu trúc file.</p>
+<h2>B4. Báo một lỗi cụ thể</h2>
+<blockquote>
+<p>Mong muốn: <code>[điều cần thấy]</code>. Thực tế: <code>[điều đã thấy]</code>. Cách tái hiện: <code>[các bước]</code>. Bằng chứng: <code>[ảnh/log/video]</code>. Thay đổi gần nhất: <code>[việc vừa làm]</code>. Hãy tìm nguyên nhân theo dữ kiện, sửa nhỏ nhất có thể, giữ <code>[phần đã đúng]</code>, chạy lại các bước trên và báo kết quả.</p>
+</blockquote>
+<p><strong>Thử:</strong> lặp đúng các bước tái hiện; kiểm thêm phần đã đúng. <strong>Lỗi:</strong> nếu ba lần chưa tiến bộ, dừng sửa và xem lại giả định/asset.</p>
+<h2>B5. Hero video một cảnh</h2>
+<blockquote>
+<p>Xây hero cho <code>[chủ đề]</code> với <code>hero.mp4</code> làm video nền im lặng và <code>poster.jpg</code> làm ảnh chờ. Tiêu đề <code>[text]</code>, mô tả <code>[text]</code>, CTA <code>[nhãn + đích thật]</code> là HTML. Giữ chữ đọc được suốt video, điện thoại không cắt mất chủ thể, người chọn giảm chuyển động xem poster tĩnh. Chỉ làm hero trước; mở preview và thử video, poster, CTA, desktop và màn hẹp.</p>
+</blockquote>
+<p><strong>Thử:</strong> tải lại, tắt video, bấm CTA, thử màn hẹp. <strong>Lỗi:</strong> ghi giây cụ thể khiến chữ chìm hoặc vùng bị cắt.</p>
+<h2>B6. Kiểm trước khi chia sẻ</h2>
+<blockquote>
+<p>Hãy kiểm bản dự án hiện tại trên desktop và điện thoại: nội dung, asset tải được, thao tác chính, CTA, tốc độ cảm nhận, fallback và thông tin nhạy cảm. Lập bảng đã đạt/chưa đạt/chưa thể kiểm. Chỉ sửa lỗi chặn người dùng hoàn thành hành động chính. Sau đó cho tôi biết link nào người khác có thể mở được; đừng gọi localhost là link công khai.</p>
+</blockquote>
+<p><strong>Thử:</strong> mở link từ thiết bị/trình duyệt khác. <strong>Lỗi:</strong> nếu file lỗi chỉ ở bản chia sẻ, kiểm đường dẫn asset và cấu hình phát hành.</p>
+<h2>B7. Checklist bốn ảnh cho Tripo</h2>
+<ul>
+<li>[ ] Cùng một đối tượng, cùng màu và phụ kiện ở trước/sau/trái/phải.</li>
+<li>[ ] Mỗi ảnh một góc rõ, toàn thân/toàn xe, nền sạch.</li>
+<li>[ ] Không có chữ, tay/chân/bánh bị cắt hoặc chi tiết che khuất lớn.</li>
+<li>[ ] Đặt bốn ảnh cạnh nhau và đánh dấu chi tiết không nhất quán.</li>
+<li>[ ] Duyệt preview nhiều góc trước khi xuất GLB; kiểm rig/clip riêng.</li>
+</ul>
+<h2>B8. Nâng Mira từ di chuyển cả khối sang chạy có khớp</h2>
+<blockquote>
+<p>Đây là repo Mira và GLB mới sau khi Auto Rig. Hãy liệt kê skeleton, skin và tên các clip có thật. Giữ bản GLB cũ làm dự phòng. Nối clip đứng khi không di chuyển, clip chạy khi di chuyển và clip đánh khi dùng chiêu chém. Kiểm khi bắt đầu chạy, đổi hướng và dừng: chân không trượt, bốt không xuyên nền, áo và túi không kéo méo. Mở localhost, cho tôi xem ba trạng thái ở cùng góc camera. Chưa sửa quái và bối cảnh.</p>
+</blockquote>
+<p><strong>Thử:</strong> đứng → chạy → dừng → chém. <strong>Lỗi:</strong> nếu không có clip, dừng và xử lý asset; đừng gọi chuyển động cả khối là chạy có khớp.</p>
+<h2>B9. Nâng một loại quái</h2>
+<blockquote>
+<p>Trong game Mira, hãy xem ảnh concept quái tôi gửi và chọn <strong>một</strong> loại quái hiện tại để nâng cấp hình ảnh. Giữ nguyên máu, tốc độ, thời điểm xuất hiện và kiểu tấn công. Đề xuất giữ hình khối Three.js hay tạo GLB riêng, giải thích lựa chọn bằng việc quái có đọc rõ ở góc camera đang chơi không. Làm một bản thử và mở localhost để tôi so trước/sau.</p>
+</blockquote>
+<p><strong>Thử:</strong> nhận ra quái khi nó còn ở xa và khi nhiều con cùng xuất hiện. <strong>Lỗi:</strong> nếu model đẹp nhưng khó thấy, chỉnh hình/màu trước khi tăng chi tiết.</p>
+<h2>B10. Đồng bộ một chiêu phép</h2>
+<blockquote>
+<p>Hãy kiểm riêng chiêu Tia Linh Quang của Mira theo ba lớp: luật trúng đích, tư thế nhân vật và hiệu ứng hình/âm. Giữ nguyên sát thương và thời gian hồi. Khi bấm, tư thế và tia sáng phải xuất hiện đúng lúc; quái mất máu khi tia chạm. Hiệu ứng không được che vòng cảnh báo nguy hiểm. Thử với quái đứng gần và quái đang di chuyển; báo điều đã kiểm.</p>
+</blockquote>
+<p><strong>Thử:</strong> quan sát lúc bấm, tia chạm, thanh máu quái và lúc chiêu sẵn sàng lại. <strong>Lỗi:</strong> nếu ảnh và luật lệch thời điểm, sửa đồng bộ trước khi thêm hạt hoặc ánh sáng.</p>
+</div><div class="chapter-end"><span>Hết phụ lục b</span><button class="next-chapter" type="button">Đọc tiếp <span aria-hidden="true">→</span></button></div></section></div></main>
+</div>
+<div class="mobile-panel" id="mobilePanel"><div class="panel-label">Điều chỉnh kích thước</div><div class="setting"><div class="setting-head"><label for="mFontSize">Cỡ chữ</label><output id="mFontValue">18px</output></div><input id="mFontSize" type="range" min="15" max="24" value="18"></div><div class="setting"><div class="setting-head"><label for="mPageWidth">Độ rộng trang</label><output id="mWidthValue">780px</output></div><input id="mPageWidth" type="range" min="620" max="1000" step="20" value="780"></div><div class="setting"><div class="setting-head"><label for="mImageSize">Kích thước hình</label><output id="mImageValue">100%</output></div><input id="mImageSize" type="range" min="60" max="100" step="5" value="100"></div><button class="reset-btn" type="button" id="mResetBtn">Khôi phục mặc định</button></div>
+<dialog class="image-dialog" id="imageDialog"><div class="image-dialog-inner"><div class="image-dialog-top"><button class="image-dialog-close" id="imageClose" type="button">Đóng ✕</button></div><img id="imageZoom" alt=""><p id="imageCaption"></p></div></dialog>
+</div><script>
+const ids=['cover','chap-01','chap-02','chap-03','chap-04','chap-05','chap-06','chap-07','chap-08','chap-09','chap-10','chap-11','appendix-1','appendix-2'];let current='cover';const root=document.documentElement;
+const defaults={font:18,width:780,image:100};let prefs={...defaults};try{prefs={...prefs,...JSON.parse(localStorage.getItem('ebookPreviewPrefs')||'{}')}}catch{}
+function applyPrefs(){prefs.font=Math.max(15,Math.min(24,Number(prefs.font)||18));prefs.width=Math.max(620,Math.min(1000,Number(prefs.width)||780));prefs.image=Math.max(60,Math.min(100,Number(prefs.image)||100));root.style.setProperty('--font-size',prefs.font+'px');root.style.setProperty('--measure',prefs.width+'px');root.style.setProperty('--image-scale',prefs.image+'%');for(const [key,val] of [['mFontSize',prefs.font],['mPageWidth',prefs.width],['mImageSize',prefs.image]])document.getElementById(key).value=val;for(const [key,val] of [['mFontValue',prefs.font+'px'],['mWidthValue',prefs.width+'px'],['mImageValue',prefs.image+'%']])document.getElementById(key).textContent=val;localStorage.setItem('ebookPreviewPrefs',JSON.stringify(prefs))}
+function show(id,push=true){if(!ids.includes(id))id='cover';current=id;document.querySelectorAll('.book-section,.cover').forEach(el=>el.classList.toggle('active',el.id===id));document.querySelectorAll('.toc-link').forEach(el=>el.classList.toggle('active',el.dataset.target===id));const title=id==='cover'?'Trang bìa':document.getElementById(id).dataset.title;document.getElementById('topTitle').textContent=title;document.title=title+' · Làm chủ Vibe Code 3D';document.getElementById('sidebar').classList.remove('open');document.getElementById('mobilePanel').classList.remove('open');if(push)history.replaceState(null,'','#'+id);window.scrollTo({top:0,behavior:'instant'});progress()}
+function progress(){const selected=document.querySelector('.book-section.active');if(!selected){document.getElementById('progressFill').style.width='0%';return}const max=document.documentElement.scrollHeight-innerHeight;const within=max>0?scrollY/max:0;const idx=ids.indexOf(current);const pct=((idx-1+within)/(ids.length-1))*100;document.getElementById('progressFill').style.width=Math.max(0,Math.min(100,pct))+'%'}
+function zoomImage(img){const dialog=document.getElementById('imageDialog');const figure=img.closest('figure');document.getElementById('imageZoom').src=img.src;document.getElementById('imageZoom').alt=img.alt;document.getElementById('imageCaption').textContent=figure?.querySelector('figcaption')?.textContent||img.alt;dialog.showModal()}
+document.addEventListener('click',e=>{const img=e.target.closest('.prose figure img');if(img){zoomImage(img);return}const target=e.target.closest('[data-target]');if(target){show(target.dataset.target);return}if(e.target.closest('.next-chapter')){const i=ids.indexOf(current);show(ids[Math.min(ids.length-1,i+1)]);return}});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.prose figure img')){e.preventDefault();zoomImage(e.target)}});
+document.getElementById('imageClose').addEventListener('click',()=>document.getElementById('imageDialog').close());document.getElementById('imageDialog').addEventListener('click',e=>{if(e.target.id==='imageDialog')e.target.close()});
+for(const [id,key] of [['mFontSize','font'],['mPageWidth','width'],['mImageSize','image']])document.getElementById(id).addEventListener('input',e=>{prefs[key]=Number(e.target.value);applyPrefs()});
+for(const id of ['mResetBtn'])document.getElementById(id).addEventListener('click',()=>{prefs={...defaults};applyPrefs()});
+document.getElementById('menuBtn').addEventListener('click',()=>{document.getElementById('sidebar').classList.toggle('open');document.getElementById('mobilePanel').classList.remove('open')});document.getElementById('settingsBtn').addEventListener('click',()=>{document.getElementById('mobilePanel').classList.toggle('open');document.getElementById('sidebar').classList.remove('open')});document.getElementById('coverBtn').addEventListener('click',()=>show('cover'));document.getElementById('printBtn').addEventListener('click',()=>print());window.addEventListener('hashchange',()=>show(location.hash.slice(1),false));window.addEventListener('scroll',progress,{passive:true});window.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('sidebar').classList.remove('open');document.getElementById('mobilePanel').classList.remove('open')}});applyPrefs();show(location.hash.slice(1)||'cover',false);if('scrollRestoration' in history)history.scrollRestoration='manual';window.addEventListener('load',()=>{requestAnimationFrame(()=>window.scrollTo(0,0));setTimeout(()=>window.scrollTo(0,0),120)});
+</script></body></html>
